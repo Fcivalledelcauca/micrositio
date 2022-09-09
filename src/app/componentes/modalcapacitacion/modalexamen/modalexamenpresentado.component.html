@@ -1,0 +1,37 @@
+<div class="fondo-modal-examen animated fadeIn fast" 
+    *ngIf="modalExamenService.ocultarModal"
+    >
+    <!-- sample modal content -->
+    <div id="responsive-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cuestionario <span class="h3">{{examen.nombre | titlecase}}</span></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="card" *ngFor="let pregunta of examen.preguntas; index as i" >
+                    <div class="card-header">
+                       {{i+1}}- {{pregunta.pregunta}}
+                      </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <ul class="list-group">
+                                <app-pregunta [pregunta]="pregunta" (resp)="recibirRespuestaSeleccionada($event)"></app-pregunta>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="alertaPregunta">
+                    <strong>Por favor </strong>responda todas las preguntas!.
+                    <button type="button" (click)="cerrarAlerta()" class="btn-close" aria-label="Close">
+                      <span aria-hidden="true"></span>
+                    </button>
+                  </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+                    <button class="btn btn-envio" (click)="enviar()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

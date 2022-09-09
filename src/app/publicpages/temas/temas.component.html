@@ -1,0 +1,32 @@
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader p-0">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label">FCI Valle del Cauca</p>
+    </div>
+</div>
+<div class="row py-5">
+    <div clas="col-md-12">
+        <div class="card col-md-6 offset-md-3">
+            <div class="card-body">
+                <h3 class="text-center title text-uppercase">Listado general de Temas Técnicos para el Fortalecimiento Institucional</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="title">#</th>
+                                <th class="title">NOMBRE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tema of temasDisplay;let i = index">  
+                                <td tabindex="30">{{i + 1 }}</td>
+                                <td tabindex="31">{{tema.Tema}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        

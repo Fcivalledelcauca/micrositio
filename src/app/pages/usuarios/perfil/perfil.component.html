@@ -1,0 +1,114 @@
+ <!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<!-- <div class="preloader">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label">FCI Valle del Cauca</p>
+    </div>
+</div> -->
+ <!-- Row -->
+ <div class="row">
+    <!-- Column -->
+    <div class="col-lg-4 col-xlg-3 col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="m-t-30 center"> 
+                    <img [src]="imagenBD"   class="img-circle" width="150" tabindex="30" />
+                    <div class="mt-2 mb-2">
+                        <input type="file"  class="form-control form-control-sm" (change)="setearImagen($event.target.files[0])"/>
+                        <!-- <button (click)="subirImagen()" class="btn waves-effect waves-light btn-xs btn-info">Subir imagen</button> -->
+                    </div>
+                   
+                    <h4 class="card-title m-t-10">{{ perfil?.nombreCompleto }}</h4>
+                    <h6 class="card-subtitle">{{perfil?.email}}</h6>
+                    <!-- <div class="row text-center justify-content-md-center">
+                        <div class="col-6"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
+                        <div class="col-6"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
+                    </div> -->
+                </div>
+            </div>
+            <div> <hr> </div>
+            <div class="card-body" tabindex="31"> <small class="text-muted">Correo Electrónico </small>
+                <h6>{{perfil?.email}}</h6> <small class="text-muted p-t-30 db">Teléfono</small>
+                <h6>{{perfil?.telefono}}</h6> <small class="text-muted p-t-30 db">Dirección</small>
+                <h6>{{perfil?.direccion}} {{this.auth.perfil.municipio}} </h6>
+                <div class="map-box">
+                    <!-- <iframe [src]="ubicacionmapa" width="100%" height="150" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+                </div> <small class="text-muted p-t-30 db"></small>
+                <br />
+                <!--  <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
+                            <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
+                            <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button> -->
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs profile-tab" role="tablist" tabindex="32">
+                <li class="nav-item active"> <a class="nav-link" data-bs-toggle="tab" href="#perfil" role="tab">Detalle</a> </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="settings" role="tabpanel">
+                    <div class="card-body">
+                        <form class="form-horizontal form-material"
+                               [formGroup]="perfilForm"
+                               (submit)="actualizarPerfil()">
+                            <div class="form-group" tabindex="33">
+                                <label class="col-md-12">Nombre Completo</label>
+                                <div class="col-md-12">
+                                    <input type="text" formControlName="nombrecompleto" placeholder="" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group" tabindex="34">
+                                <label for="example-email" class="col-md-12">Documento de Identidad</label>
+                                <div class="col-md-12">
+                                    <input type="text" formControlName="documentoidentidad" placeholder="Identificación" class="form-control form-control-line" name="example-email" id="example-email">
+                                </div>
+                            </div>
+                            <div class="form-group" tabindex="35">
+                                <label class="col-md-12">Correo Eléctronico</label>
+                                <div class="col-md-12">
+                                    <input type="email" formControlName="email" placeholder="correo@dominio.com" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group" tabindex="36">
+                                <label for="example-email" class="col-md-12">Teléfono/Celular</label>
+                                <div class="col-md-12">
+                                    <input type="tel" formControlName="telefono" placeholder="" class="form-control form-control-line" >
+                                </div>
+                            </div>
+                            <div class="form-group" tabindex="37">
+                                <label class="col-md-12">Dirección</label>
+                                <div class="col-md-12">
+                                    <input type="text" formControlName="direccion" placeholder="" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf="esAdministrador" tabindex="38">
+                                <label class="col-sm-12">Municipio</label>
+                                <div class="col-sm-12">
+                                   <app-buscar-mcipios (terminoSeleccionado)="terminoSeleccionado($event)"
+                                                        (idMunicipioSeleccionado)="idMunicipioSeleccionado($event)"
+                                                        [terminoEnviado]="perfilForm.get('municipio').value"
+                                                        [actualizar]="actualizar">
+                                    </app-buscar-mcipios>
+                                </div>
+                            </div>
+                            <div class="form-group" tabindex="39">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-success text-white" type="submit">Actualizar Perfíl</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+<!-- Row -->

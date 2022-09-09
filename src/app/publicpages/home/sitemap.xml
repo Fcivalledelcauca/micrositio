@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+
+         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+
+         xmlns:example="http://www.example.com/schemas/example_schema"> <!-- namespace extension -->
+
+<url>
+
+      <loc>https://www.fcivalledelcauca.com.co/public/home</loc>
+
+      <lastmod>2022-18-03</lastmod>
+
+      <changefreq>year</changefreq>
+
+
+</url>
+
+
+<url>
+
+      <loc>https://www.fcivalledelcauca.com.co/public/deploy</loc>
+
+      <lastmod>2022-18-03</lastmod>
+
+      <changefreq>years</changefreq>
+
+
+</url>
+
+<url>
+
+      <loc>https://www.fcivalledelcauca.com.co/public/login</loc>
+
+      <lastmod>2022-18-03</lastmod>
+
+      <changefreq>years</changefreq>
+
+
+</url>
+
+<url>
+      <loc>https://www.fcivalledelcauca.com.co/assets/docs/PO-M11-P1-01.pdf</loc>
+
+      <lastmod>2022-18-03</lastmod>
+
+      <changefreq>years</changefreq>
+</url>
+
+
+<url>
+      <loc>https://www.fcivalledelcauca.com.co/public/contact</loc>
+
+      <lastmod>2022-18-03</lastmod>
+
+      <changefreq>years</changefreq>
+</url>
+
+</urlset>

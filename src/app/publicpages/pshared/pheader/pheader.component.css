@@ -1,0 +1,9 @@
+@media screen and (max-width: 500px) {
+    .logo-size {
+      height: 38px;
+      width: 100% !important;
+    }
+  }
+  .z-indexco{
+    z-index: 9998;
+  }

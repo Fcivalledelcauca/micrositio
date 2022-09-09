@@ -1,0 +1,58 @@
+
+<div class="fondo-modal-imagen animated fadeIn fast" [class.ocultar]="smodal.ocultarModal">
+    <!-- sample modal content -->
+    <div id="responsive-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Usuarios del Sistema</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form   [formGroup]="formUser" 
+                            (submit)="guardarUsuario()">
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label">Usuario-Email</label>
+                            <input type="text" formControlName="usuario" class="form-control" >
+                        </div>
+                        <select class="form-select" 
+                                    #selectRol 
+                                    (change)="onChangeSelect($event)"
+                                    aria-label="Default select example" 
+                                    formControlName="rol">
+                                <option value="0" selected>Seleccionar el Rol</option>
+                                <option Value="ADMINISTRADOR">ADMINISTRADOR</option>
+                                <option Value="DOCENTE">DOCENTE</option>
+                                <option Value="PARTICIPANTE">PARTICIPANTE</option>
+                        </select>
+                        <div class="form-group mt-3">
+                            <label class="col-sm-12">Municipio</label>
+                            <div class="col-sm-12">
+                               <app-buscar-mcipios (terminoSeleccionado)="terminoSeleccionado($event)"
+                                                    (idMunicipioSeleccionado)="idMunicipioSeleccionado($event)"
+                                                    [terminoEnviado]="municipio"
+                                                    [actualizar]="actualizar">
+                                </app-buscar-mcipios>
+                            </div>
+                        </div>
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" formControlName="activo" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                               Usuario Activo
+                            </label>    
+                        </div>            
+
+                        <div class="form-row text-end modal-footer">
+                            <div class="btn-group">
+                                <button type="submit" 
+                                        class="btn btn-success waves-effect waves-light text-white mr-1">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</div>
+

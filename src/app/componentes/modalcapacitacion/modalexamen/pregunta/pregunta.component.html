@@ -1,0 +1,23 @@
+
+<form #formExamen="ngForm">
+    <li class="list-group-item cursor"  *ngFor="let res of preguntaFormuladas.respuestas;index as j">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input  type="radio" 
+                            class="cursor"
+                            (change)="onItemChange(res)"
+                            name="idRespuesta" 
+                            id="check_{{res.idRespuesta}}"
+                            Value="{{res.idRespuesta}}"
+                            aria-label="Checkbox for following text input">
+                </div>
+            </div>
+            <div class="row ml-2 pt-1">
+                <label class="form-label cursor" for="check_{{res.idRespuesta}}" class="mr-2 h5">{{ res.respuesta }}</label>  
+            </div>
+        </div>
+        
+    </li>   
+</form>
+           

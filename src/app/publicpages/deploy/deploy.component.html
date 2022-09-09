@@ -1,0 +1,130 @@
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader p-0">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label">FCI Valle del Cauca</p>
+    </div>
+</div>
+<app-modalcookie></app-modalcookie>
+<div class="fondo">
+    
+    <div class="container-xxl py-5" *ngIf="grupo1">
+        <nav aria-label="breadcrumb" tabindex="7">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item">Inicio</li>
+              <li class="breadcrumb-item active" aria-current="page">Difusión</li>
+            </ol>
+          </nav>
+        <div class="container" >
+            <div class="row g-4" >
+                <div class="col-lg-4 col-sm-6 animated fadeInUp"  data-wow-delay="0.1s" *ngFor="let item of grupo1">
+                    <div [class]="item.ClaseCSS" data-bs-toggle="modal" data-bs-target="#exampleModal"  >
+                        <div class="p-4" style="height: 215px !important;" tabindex="8" (keydown.enter)="descarArchivo(item)">
+                            <div class="rounded-circle">
+                                 <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.Icono?item.Icono:''" ></i></a>
+                            </div>
+                            <h4 class="mb-3">{{ item.Nombre_Grupo }}</h4>
+                            <br>
+                            <span>  {{item.Descripcion}}  </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+    <!-- Service Start -->
+    <div class="container-xxl py-5" *ngIf="grupo2">
+         <div class="container">
+             <div class="row g-4" >
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo2">
+                     <div [class]="item.ClaseCSS" >
+                         <div class="p-4" style="height: 215px !important;" tabindex="9" (keydown.enter)="descarArchivo(item)">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.Icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.Nombre_Grupo }}</h4>
+                             <span>{{item.Descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </div>
+
+    <div class="container-xxl py-2" *ngIf="grupo3">
+         <div class="container">
+             <div class="row g-4">
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo3">
+                     <div [class]="item.ClaseCSS" >
+                         <div class="p-4" style="height: 215px !important;">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.Icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.Nombre_Grupo }}</h4>
+                         <span>{{item.Descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="container-xxl py-2" *ngIf="grupo4">
+         <div class="container">
+             <div class="row g-4">
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo4">
+                     <div [class]="item.ClaseCSS" >
+                         <div class="p-4" style="height: 215px !important;">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.Icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.Nombre_Grupo }}</h4>
+                         <span>{{item.Descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="container-xxl py-2" *ngIf="grupo5">
+         <div class="container">
+             <div class="row g-4">
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo5">
+                     <div [class]="item.ClaseCSS" >
+                         <div class="p-4">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.Icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.Nombre_Grupo }}</h4>
+                         <span>{{item.Descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="container-xxl py-2" *ngIf="grupo6">
+         <div class="container">
+             <div class="row g-4">
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo6">
+                     <div [class]="item.ClaseCSS" >
+                         <div class="p-4">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.Icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.Nombre_Grupo }}</h4>
+                         <span>{{item.Descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+ <!-- Modal para descarga de archivos -->
+ <app-modaldescarga [grupo]="grupoEnviar" [actualizarMunicipio]="actualizarMunicipio"></app-modaldescarga>

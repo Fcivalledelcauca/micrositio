@@ -1,0 +1,45 @@
+  <!-- ============================================================== -->
+  <!-- Preloader - style you can find in spinners.css -->
+  <!-- ============================================================== -->
+<!-- <div class="preloader">
+  <div class="loader">
+      <div class="loader__figure"></div>
+      <p class="loader__label">FCI Valle del Cauca</p>
+  </div>
+</div> -->
+<div id="main-wrapper">
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+    <div class="page-wrapper">
+       <!-- ============================================================== -->
+       <!-- Container fluid  -->
+       <!-- ============================================================== -->
+       <div class="container-fluid">
+         <app-broadcrumbs></app-broadcrumbs>
+      
+        <!-- ============================================================== -->
+         <!-- Start Page Content -->
+         <!-- ============================================================== -->
+         <!-- <div class="row"> -->
+           <!-- <div class="col-12"> -->
+              <!--  <div class="card"> -->
+                   <!-- <div class="card-body"> -->
+                      <router-outlet class="p-0"></router-outlet>
+                   <!-- </div> -->
+               <!-- </div> -->
+           <!-- </div> -->
+      <!--  </div> -->
+        </div>
+    </div>
+     <!-- ============================================================== -->
+     <!-- footer -->
+     <!-- ============================================================== -->
+  
+     <footer class="footer">
+      <i tabindex="3" (keydown.enter)="mostrarMenu()" class="_access-icon prop-icon" title="Opciones de accesibilidad"></i>
+         © 2021 FCI Valle del Cauca
+     </footer>
+     <!-- ============================================================== -->
+     <!-- End footer -->
+     <!-- ============================================================== -->
+  </div>

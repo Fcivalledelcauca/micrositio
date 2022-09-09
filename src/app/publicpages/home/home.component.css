@@ -1,0 +1,41 @@
+/********** Template CSS **********/
+:root {
+    --primary: #06BBCC;
+    --light: #F0FBFC;
+    --dark: #181d38;
+}
+
+.service-item {
+    background: #F0FBFC;
+    transition: .5s;
+}
+
+.service-item:hover {
+    margin-top: -10px;
+    background: #06BBCC;
+}
+
+.service-item * {
+    transition: .5s;
+}
+
+.service-item:hover * {
+    color: #F0FBFC !important;
+}
+
+.fondo{
+    background: white;
+}
+
+.text-azul{
+    color: #06BBCC;
+}
+
+.font-size-botton{
+    font-size: unset;
+    position:relative;
+    z-index: 9997;
+}
+.cursor-type{
+    cursor: pointer;
+}

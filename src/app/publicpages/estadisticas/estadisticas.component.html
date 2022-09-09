@@ -1,0 +1,405 @@
+<div class="row py-2">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title text-center title">Estadísticas por municipio</h3>
+                <form>
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <div class="form-group" tabindex="24">
+                                <label class="form-label">Seleccione un municipio</label>
+                                <app-buscar-mcipios (terminoSeleccionado)="terminoSeleccionado($event)"
+                                                    (idMunicipioSeleccionado)="idMunicipioSeleccionado($event)"
+                                                    [actualizar]="actualizarMunicipio"
+                                                    [terminoEnviado]="terminoEnviado">
+                                </app-buscar-mcipios>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" tabindex="25">
+                                <label class="form-label">Código Dane</label>
+                                <input  type="text" id="firstName" class="form-control"  readonly [value]="codigoDane">
+                             </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group" tabindex="26">
+                                <label class="form-label">Grupo de capacidades</label>
+                                <input type="text" id="firstName" class="form-control"  readonly [value]="grupoCapacidades">
+                                </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" tabindex="27">
+                                <label class="form-label">Región</label>
+                                <input type="text" id="firstName" class="form-control"  readonly [value]="region">
+                             </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group" tabindex="28">
+                                <label class="form-label">Categoría de ruralidad</label>
+                                <input type="text" id="firstName" class="form-control"  readonly [value]="catRuralidad">
+                                 </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row py-1" *ngIf="baseIdf.length>0">
+    <div clas="col-md-12  pb-0">
+        <div class="card mb-0"  tabindex="29">
+            <div class="card-body">
+                <h3 class="text-center title">ÍNDICE DE DESEMPEÑO FISCAL VIGENCIA 2020</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="th">CÓDIGO</th>
+                                <th class="th">MUNICIPAL</th>
+                                <th class="th">PROMEDIO DPTAL</th>
+                                <th class="th">PROMEDIO NACIONAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of baseIdf">
+                                <td>IDF</td>
+                                <td>
+                                   <b>{{row.municipal | number}}</b>
+                                </td>
+                                <td> 
+                                    <b> {{ row.promediodptal }}</b>
+                                </td>
+                                <td>
+                                   <b>{{ row.promedionacional }}</b> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 class="text-center title">RANGO DE INTERPRETACIÓN</h3>
+                <h4 class="text-center">{{rangoInterpretacion}}</h4>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <!-- column -->
+   
+        <div class="card" tabindex="30">
+            <div class="card-body">
+            
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 pe-0">
+                        <h4 class="text-center">Componente Resultados - IDF</h4>
+                        <div class="display-grid chart">
+                            <ngx-charts-bar-vertical-2d 
+                                [scheme]="ricolor" 
+                                [results]="singleResultadosIdf" 
+                                [gradient]="gradient"
+                                [xAxis]="showXAxis" 
+                                [yAxis]="showYAxis"
+                                [legend]="legend"
+                                [legendTitle]="legendTitle"  
+                                [showXAxisLabel]="showXAxisLabel"
+                                [showYAxisLabel]="showYAxisLabel" 
+                                [xAxisLabel]="xAxisLabel" 
+                                [yAxisLabel]="yAxisLabel"
+                                [maxXAxisTickLength]="maxXAxisTickLength"
+                                [legendPosition]="'rigth'"
+                                (select)="onSelect($event)">
+                            </ngx-charts-bar-vertical-2d>
+                        </div>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #e58817"></i></label> Promedio Dpto  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #0872be"></i></label> Municipio  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #727875"></i></label> Promedio Nacional  </p>
+
+                        
+                    </div>
+                    <div class="col-lg-6 col-md-6 ps-0">
+                    <h4 class="text-center">Componente Gestión - IDF</h4>
+                    <div class="display-grid chart">                    
+                        <ngx-charts-bar-vertical-2d
+                                [scheme]="ricolor" 
+                                [results]="singleGestionIdf" 
+                                [gradient]="gradient" 
+                                [xAxis]="showXAxis" 
+                                [yAxis]="showYAxis"
+                                [legend]="legend"
+                                [legendTitle]="legendTitle"                         
+                                [showXAxisLabel]="showXAxisLabel"
+                                [showYAxisLabel]="showYAxisLabel" 
+                                [xAxisLabel]="xAxisLabel" 
+                                [yAxisLabel]="yAxisLabel"
+                                [maxXAxisTickLength]="maxXAxisTickLength"
+                                [legendPosition]="'rigth'"
+                                (select)="onSelect($event)">
+                        </ngx-charts-bar-vertical-2d>
+                    </div>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #e58817"></i></label> Promedio Dpto  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #0872be"></i></label> Municipio  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #727875"></i></label> Promedio Nacional  </p>
+                </div>
+                </div>
+             
+            </div>
+        </div>
+   
+
+<div class="row py-3" *ngIf="baseMdm.length>0">
+    <div clas="col-md-12  pb-0">
+        <div class="card mb-0" tabindex="31">
+            <div class="card-body">
+                <h3 class="text-center title">MEDICIÓN DE DESEMPEÑO MUNICIPAL VIGENCIA 2020</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="th">CÓDIGO</th>
+                                <th class="th">MUNICIPAL</th>
+                                <th class="th">PROMEDIO DPTAL</th>
+                                <th class="th">PROMEDIO NACIONAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of baseMdm">
+                                <td>
+                                    {{ row.codigo }}
+                                </td>
+                                <td>
+                                   <b>{{ row.municipal | number  }}</b>
+                                </td>
+                                <td> 
+                                    <b> {{ row.promedioci }}</b>
+                                </td>
+                                <td>
+                                   <b>{{ row.posiciongrupoci }}</b> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <!-- column -->
+   
+    <div class="card" tabindex="32">
+        <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 pe-0">
+                        <h4 class="text-center">Componente Gestión</h4>
+                        <div class="display-grid chart">
+                            <ngx-charts-bar-vertical 
+                                [scheme]="mdcolor1" 
+                                [results]="singleComponenteGestion" 
+                                [gradient]="gradient"
+                                [xAxis]="showXAxis" 
+                                [yAxis]="showYAxis"
+                                [legend]="legend"
+                                [legendTitle]="legendTitle"  
+                                [xAxis]="showXAxis" 
+                                [yAxis]="showYAxis" 
+                                [maxXAxisTickLength]="maxXAxisTickLength"
+                                [legendPosition]="'rigth'"
+                                [showXAxisLabel]="showXAxisLabel"
+                                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                                (select)="onSelect($event)">
+                            </ngx-charts-bar-vertical>
+                        </div>
+                         
+                    </div>
+                    <div class="col-lg-6 col-md-6 ps-0">
+                        <h4 class="text-center">Componente de Resultados</h4>
+                        <div class="display-grid chart">                    
+                            <ngx-charts-bar-vertical 
+                                [scheme]="mdcolor2" 
+                                [results]="singleComponentesResultados" 
+                                [gradient]="gradient" 
+                                [xAxis]="showXAxis" 
+                                [yAxis]="showYAxis"
+                                [legend]="legend"
+                                [legendTitle]="legendTitle"  
+                                [showXAxisLabel]="showXAxisLabel"
+                                [showYAxisLabel]="showYAxisLabel" 
+                                [xAxisLabel]="xAxisLabel"
+                                [maxXAxisTickLength]="maxXAxisTickLength" 
+                                [yAxisLabel]="yAxisLabel"
+                                [legendPosition]="'rigth'"
+                                (select)="onSelect($event)">
+                            </ngx-charts-bar-vertical>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+</div>
+
+<div class="row py-3" *ngIf="baseIdi.length>0">
+    <div clas="col-md-12  pb-0">
+        <div class="card mb-0" tabindex="33">
+            <div class="card-body">
+                <h3 class="text-center title">ÍNDICE DE DESEMPEÑO INSTITUCIONAL VIGENCIA 2020</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="th">CÓDIGO</th>
+                                <th class="th">MUNICIPAL</th>
+                                <th class="th">GRUPO PAR</th>
+                                <th class="th">PROMEDIO GRUPO PAR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of baseIdi">
+                                <td class="th">IDI</td>
+                                <td>
+                                   <b>{{ row.municipal }}</b>
+                                </td>
+                                <td> <b> {{ row.grupopar }}</b></td>
+                                <td>
+                                   <b>{{ row.promediogrupopar }}</b> 
+                                </td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <!-- column -->
+
+    <div class="card" tabindex="34">
+        <div class="card-body">
+        
+            <div class="row">
+                <div class="col-lg-6 col-md-6 pe-0">
+                    <h4 class="text-center">LAS 7 DIMENSIONES DEL MIPG</h4>
+                    <div class="display-grid chart">
+                        <ngx-charts-bar-vertical-2d
+                            [scheme]="sevendmcolor" 
+                            [results]="singleDimensionMipg1"
+                            [gradient]="gradient"  
+                            [xAxis]="showXAxis" 
+                            [yAxis]="showYAxis"
+                            [legend]="legend"
+                            [legendTitle]="legendTitle"  
+                            [showXAxisLabel]="showXAxisLabel"
+                            [showYAxisLabel]="showYAxisLabel" 
+                            [xAxisLabel]="xAxisLabel" 
+                            [yAxisLabel]="yAxisLabel"
+                            [maxXAxisTickLength]="maxXAxisTickLength"
+                            [legendPosition]="'rigth'"
+                            (select)="onSelect($event)">
+                            
+                    </ngx-charts-bar-vertical-2d>
+                    </div>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #e58817"></i></label> Municipio </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #0872be"></i></label> Promedio  </p>
+
+                    
+                </div>
+                <div class="col-lg-6 col-md-6 ps-0">
+                <h4 class="text-center">LAS 7 DIMENSIONES DEL MIPG</h4>
+                <div class="display-grid chart">                    
+                    <ngx-charts-bar-vertical-2d
+                    [scheme]="sevendmcolor" 
+                    [results]="singleDimensionMipg2"
+                    [gradient]="gradient"  
+                    [xAxis]="showXAxis" 
+                    [yAxis]="showYAxis"
+                    [legend]="legend"
+                    [legendTitle]="legendTitle"  
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" 
+                    [xAxisLabel]="xAxisLabel" 
+                    [yAxisLabel]="yAxisLabel"
+                    [maxXAxisTickLength]="maxXAxisTickLength"
+                    [legendPosition]="'rigth'"
+                    (select)="onSelect($event)">
+                    
+            </ngx-charts-bar-vertical-2d>
+                </div>
+                <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #e58817"></i></label> Municipio </p>
+                <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #0872be"></i></label> Promedio  </p>
+            </div>
+            </div>
+         
+        </div>
+    </div>
+</div>
+
+<div class="row py-3" *ngIf="singlePoliticas.length>0">
+    <!-- column -->
+   
+        <div class="card" tabindex="35">
+            <div class="card-body">
+                <div class="col-lg-12 row">
+                <h4 class="text-center title">18 POLÍTICAS MIPG ÍNDICE DESEMPEÑO INSITUCIONAL</h4>
+                <div class="display-grid chart">
+                    <ngx-charts-bar-horizontal
+                        [scheme]="policolor"
+                        [results]="singlePoliticas"
+                        [gradient]="gradient"
+                        [legend]="legend"
+                        [legendTitle]="legendTitle"
+                        [xAxis]="showXAxis" 
+                        [showXAxisLabel]="showXAxisLabel"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        [maxYAxisTickLength]="maxYAxisTickLength"
+                        [maxXAxisTickLength]="maxXAxisTickLength"
+                        [legendPosition]="'rigth'"
+                        (select)="onSelect($event)"
+                        (activate)="onActivate($event)"
+                        (deactivate)="onDeactivate($event)">
+                  </ngx-charts-bar-horizontal>
+
+            </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #7FB3D5"></i></label> POLÍTICA 1 Gestión Estratégica del Talento Humano  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #A9DFBF"></i></label> POLÍTICA 2 Integridad  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #E6B0AA"></i></label> POLÍTICA 3 Planeación Institucional  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #F6DDCC"></i></label> POLÍTICA 4 Gestión Presupuestal y Eficiencia del Gasto Público  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #AAAAAA"></i></label> POLÍTICA 5 Fortalecimiento Organizacional y Simplificación de Procesos  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #48C9B0"></i></label> POLÍTICA 6 Gobierno Digital  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #FCF3CF"></i></label> POLÍTICA 7 Seguridad Digital  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #CCD1D1"></i></label> POLÍTICA 8 Defensa Jurídica  </p>
+                        <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #E8DAEF"></i></label> POLÍTICA 9 Transparencia, Acceso a la Información y lucha contra la Corrupción  </p>
+                    </div>
+                    <div class="col-md-6">
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #F5B7B1"></i></label> POLÍTICA 10 Servicio al ciudadano  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #85C1E9"></i></label> POLÍTICA 11 Racionalización de Trámites  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #BDC3C7"></i></label> POLÍTICA 12 Participación Ciudadana en la Gestión Pública  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #F5CBA7"></i></label> POLÍTICA 13 Seguimiento y Evaluación del Desempeño Institucional  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #D0ECE7"></i></label> POLÍTICA 14 Gestión Documental  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #D6DBDF"></i></label> POLÍTICA 15 Gestión del Conocimiento  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #BB8FCE"></i></label> POLÍTICA 16 Control Interno  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #2874A6"></i></label> POLÍTICA 17 Mejora Normativa  </p>
+                    <p>  <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #AED6F1"></i></label>POLÍTICA 18 Gestión de la Información Estadística  </p>
+                </div>
+                </div>
+           
+            
+            
+
+        </div>
+    </div>
+</div>
+
+

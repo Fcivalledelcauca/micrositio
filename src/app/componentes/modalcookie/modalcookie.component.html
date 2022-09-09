@@ -1,0 +1,19 @@
+<!-- cookie warning toast -->
+<div class="fixed-bottom p-4 z-indexco" [hidden]="!visible">
+    <div class="toast bg-dark text-white w-100 mw-100" role="alert" data-autohide="false">
+        <div class="toast-body p-4 d-flex flex-column">
+            <h4>Opciones de Cookies</h4>
+            <p class="text-justify">
+                Las cookies y tecnologías similares ("Cookies") son necesarias para el correcto funcionamiento de este sitio web y para brindarle la experiencia óptima de nuestros servicios.
+            </p>
+            <div class="ml-auto">
+                <button type="button" class="btn btn-outline-light mr-3" (click)="ofGRDP()">
+                    Denegar
+                </button>
+                <button type="button" class="btn btn-light" (click)="onGRDP()">
+                    Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

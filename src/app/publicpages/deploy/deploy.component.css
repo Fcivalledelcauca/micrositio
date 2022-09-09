@@ -1,0 +1,141 @@
+.fondo{
+    background: white;
+}
+
+.service-item {
+    background: #F0FBFC;
+    transition: .5s;
+}
+
+.service-item:hover {
+    margin-top: -10px;
+    background: #06BBCC;
+}
+
+.service-item * {
+    transition: .5s;
+}
+
+.service-item:hover * {
+    color: #F0FBFC !important;
+}
+
+.text-azul{
+    color: #06BBCC;
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+/* hover personalizado por cada cuadro */
+
+.service-item-one:hover {
+    margin-top: -10px;
+    background: #EAB32A;
+}
+.text-item-one{
+    color: #EAB32A;
+}
+.service-item-one:hover * {
+    color: #F0FBFC !important;
+}
+.service-item-one {
+    background: #FFF5DD70;
+    transition: .5s;
+}
+
+.service-item-two:hover {
+    margin-top: -10px;
+    background: #E38D2F;
+}
+.text-item-two{
+    color: #E38D2F;
+}
+.text-naranja{
+    color: #E38D2F;
+}
+.service-item-two:hover * {
+    color: #F0FBFC !important;
+}
+.service-item-two {
+    background: #FFEDD970;
+    transition: .5s;
+}
+
+.service-item-three:hover {
+    margin-top: -10px;
+    background: #09972F;
+}
+.text-item-three{
+    color: #09972F;
+}
+.text-verde{
+    color: #09972F;
+}
+.service-item-three:hover * {
+    color: #F0FBFC !important;
+}
+.service-item-three {
+    background: #DAFFE485;
+    transition: .5s;
+}
+
+
+.service-item-four:hover {
+    margin-top: -10px;
+    background: #0B9FA5;
+}
+.text-item-four{
+    color: #0B9FA5;
+}
+.text-azulado{
+    color: #0B9FA5;
+}
+.service-item-four:hover * {
+    color: #F0FBFC !important;
+}
+.service-item-four {
+    background: #DEFEFF87;
+    transition: .5s;
+}
+
+
+.service-item-five:hover {
+    margin-top: -10px;
+    background: #006F2E;
+    
+}
+.text-item-five{
+    color: #006F2E;
+    
+}
+.text-verdeo{
+    color: #006F2E;
+}
+
+.service-item-five:hover * {
+    color: #F0FBFC !important;
+}
+.service-item-five {
+    background: #DCFDE98A;
+    transition: .5s;
+}
+
+.service-item-six:hover {
+    margin-top: -10px;
+    background: #DF3534;
+}
+.text-item-six{
+    color: #DF3534;
+}
+.text-rojo{
+    color: #DF3534;
+}
+.service-item-six:hover * {
+    color: #F0FBFC !important;
+}
+.service-item-six {
+    background: #FFEDED85;
+    transition: .5s;
+}

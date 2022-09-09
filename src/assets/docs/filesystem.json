@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "data": {
+        "nombre": "Sumas",
+        "fecha": "20/05/2022",
+        "materia": "Matematicas"
+      },
+      "children": [
+        {
+          "data": {
+            "nombre": "Pregunta 1",
+            "fecha": "2 + 2",
+            "materia": "4"
+          },
+          "children": [
+            {
+              "data": {
+                "nombre": "JUAN",
+                "fecha": "3",
+                "materia": "4"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "nombre": "Pregunta 2",
+            "fecha": "Raiz cuadrara de 64",
+            "materia": "8"
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "nombre": "Anatomia",
+        "fecha": "20/05/2022",
+        "materia": "Biologia"
+      },
+      "children": [
+        {
+          "data": {
+            "nombre": "Pregunta 1",
+            "fecha": "Cuantos huesos tiene el ser humano",
+            "materia": "206"
+          }
+        }
+      ]
+    }
+  ]
+}

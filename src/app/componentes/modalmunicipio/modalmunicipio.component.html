@@ -1,0 +1,54 @@
+<div class="fondo-modal-imagen animated fadeIn fast" [class.ocultar]="modalService.ocultarModal">
+    <!-- sample modal content -->
+    <div id="responsive-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Municipios</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form   [formGroup]="formMunicipio" 
+                            (submit)="guardarMunicipio()">
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label">Nombre Municipio</label>
+                            <input type="text" formControlName="nombre" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label">Código Dane</label>
+                            <input type="text" formControlName="codigodane" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label">Región</label>
+                            <input type="text" formControlName="region" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label">Categoria ruralidad</label>
+                            <input type="text" formControlName="categoria_ruralidad" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label">Dotaciones iniciales</label>
+                            <input type="text" formControlName="dotaciones_iniciales" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label">Grupo Par</label>
+                            <input type="text" formControlName="grupo_par" class="form-control" >
+                        </div>
+                        <div class="form-row text-end modal-footer">
+                                <button type="submit" 
+                                        class="btn btn-success waves-effect waves-light text-white mr-1">Guardar</button>
+                                <button type="button" 
+                                        class="btn btn-warning waves-effect waves-light text-white mr-1"
+                                        (click)="limpiar()">Limpiar</button>
+                                <button type="button"  
+                                        class="btn btn-default waves-effect" (click)="cerrarModal()">Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</div>
+
+

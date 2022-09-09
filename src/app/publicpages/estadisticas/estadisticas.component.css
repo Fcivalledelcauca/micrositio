@@ -1,0 +1,14 @@
+.chart{
+    height: 500px;
+    width: 100%;
+}
+
+.display-grid{
+    display: grid;
+}
+.background{
+    background: #ededed;
+}
+.th{
+ font-family: ubuntu;
+}

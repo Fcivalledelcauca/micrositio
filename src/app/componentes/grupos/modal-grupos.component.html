@@ -1,0 +1,46 @@
+<div class="fondo-modal-imagen animated fadeIn fast" [class.ocultar]="smodalgrupo.ocultarModal">
+    <!-- sample modal content -->
+    <div id="responsive-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" tabindex="50">
+                    <h4 class="modal-title">Grupos</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form   [formGroup]="formGrupo" 
+                            (submit)="guardarGrupo()">
+                        <div class="form-group" tabindex="51" >
+                            <label for="recipient-name" class="form-label">Orden</label>
+                            <input type="text" formControlName="orden" class="form-control" >
+                        </div>
+                        <div class="form-group" tabindex="52">
+                            <label for="message-text" class="form-label">Grupo</label>
+                            <input type="text" formControlName="nombre_Grupo" class="form-control"  >
+                        </div>
+                        <div class="form-group"  tabindex="54">
+                            <label for="message-text" class="form-label">Descripción</label>
+                            <input type="text" formControlName="descripcion" class="form-control">
+                        </div>
+                        <div class="form-group"  tabindex="55">
+                            <label for="message-text" class="form-label">Icono</label>
+                            <input type="text" formControlName="icono" class="form-control">
+                        </div>
+                        <div class="form-row text-end modal-footer">
+                            <div class="">
+                                <button tabindex="56" type="submit" 
+                                        class="btn btn-success me-2 waves-effect waves-light text-white mr-5">Guardar</button>
+                                <button tabindex="57" type="button" 
+                                        class="btn btn-warning waves-effect waves-light text-white mr-1"
+                                        (click)="limpiar()">Limpiar</button>
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</div>
+

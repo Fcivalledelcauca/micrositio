@@ -1,0 +1,212 @@
+<!-- Modal Add Category -->
+<div class="fondo-modal-imagen animated fadeIn fast" role="dialog" tabindex="-1"
+     id="add-new-event" 
+     [class.ocultar]="modalService.ocultarModal"> 
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>{{ tituloEvento?'Editar':'Agregar un' }}</strong>{{ tituloEvento?' evento '+ tituloEvento :' nuevo evento' }} </h4>
+                <button type="button" class="btn-close" (click)="cerrarModal()" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+              <div class="card">
+                <div class="card-body p-0">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"><a #tab1 class="nav-link active cursor" data-bs-toggle="tab" href="#evento"  role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Evento</span></a> </li>
+                        <li class="nav-item" *ngIf="mostrarCarpetaMateriales"><a class="nav-link cursor" data-bs-toggle="tab" href="#material" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Material</span></a> </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content tabcontent-border">
+                        <!--Crear el Evento-->
+                        <div class="tab-pane active" id="evento" role="tabpanel">
+                            <div class="p-20">
+                              <form [formGroup]="formEvento" (ngSubmit)="guardarEvento()">
+                                <section class="summary-section">
+                                    <div class="form-group">
+                                        <label class="form-label" style="margin-left: 0px;">Título</label>
+                                        <input type="text" formControlName="titulo" class="form-control input-sm" id="lbltitulo" placeholder="Escriba un título para el evento" value="">
+                                        <span class="form-text text-danger"
+                                            *ngIf="validarCampos('titulo')">
+                                            El Campo es obligatorio
+                                         </span>
+                                    </div>
+                                </section>
+                                <div class="summary-section">
+                                  <label class="form-label" style="margin-left: 0px;">Descripción</label>
+                                  <textarea type="text" formControlName="descripcion" class="form-control input-sm" rows="1"></textarea>
+                                  <span class="form-text text-danger"
+                                            *ngIf="validarCampos('descripcion')">
+                                            El Campo es obligatorio
+                                         </span>
+                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 72.8px;"></div><div class="form-notch-trailing"></div></div></div>
+                                <div class="form-check mx-2 d-none">
+                                  <input class="form-check-input" formControlName="todoElDia" type="checkbox" checked="" >
+                                  <label class="form-check-label">Todo el día</label>
+                                </div>
+                                <div class="form-group">
+                                  <label for="message-text" class="form-label">Archivo</label>
+                                  <div class="input-group">
+                                      <img *ngIf="mostrarIconoImagenEvento" [src]="linkImagenEvento" alt="imagen-pdf" style="width: 5%;height: 5%;">
+                                      <input class="form-control" id="recipient-name" formControlName="nombreArchivo"/>
+                                  </div>
+                              </div>
+                                <div class="summary-section mt-2">
+                                  <label class="form-label">Imagen</label>
+                                  <app-dropzone  (resFiles)="traerFilesEvento( $event )" 
+                                                  [configDropzone]="configEvento"
+                                                  [limpiar]="limpiarDropZoneEvento" >
+                                  </app-dropzone>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <label class="form-label" style="margin-left: 0px;">Evento Presencial</label>
+                                    <input type="text" class="form-control input-sm" formControlName="direccion" placeholder="Ingrese la dirección del evento" value="">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label class="form-label" style="margin-left: 0px;">Evento Virtual</label>
+                                    <input type="text" class="form-control input-sm" formControlName="link" placeholder="Ingrese el link del evento" value="">
+                                  </div>
+                                </div>
+                                <section class="row mt-2">
+                                  <div class="col-6">
+                                      <div class="form-group">
+                                        <label class="form-label" style="margin-left: 0px;">Fecha Inicial</label>
+                                        <input type="datetime-local" formControlName="fecha_Ini" class="form-control">
+                                        <span class="form-text text-danger"
+                                            *ngIf="validarCampos('fecha_Ini')">
+                                            El Campo es obligatorio
+                                         </span>
+                                      </div>
+                                  </div>
+                                  <div class="col-6">
+                                      <div class="form-group">
+                                        <label class="form-label" style="margin-left: 0px;">Fecha final</label>
+                                        <input type="datetime-local" formControlName="fecha_Fin" class="form-control">
+                                        <span class="form-text text-danger"
+                                            *ngIf="validarCampos('fecha_Fin')">
+                                            El Campo es obligatorio
+                                         </span>
+                                      </div>
+                                   </div>
+                                </section>
+                                <div class="text-center mt-2">
+                                  <div class="form-check form-check-inline ml-2">
+                                    <input class="form-check-input" type="radio" name="colorEvento" formControlName="colorEvento" value="bg-primary" checked="">
+                                    <label class="form-check-label text-primary"><i class="fas fa-circle" style="color: #1266F1"></i></label>
+                                  </div>
+                                  <div class="form-check form-check-inline ml-2">
+                                    <input class="form-check-input" type="radio" name="colorEvento" formControlName="colorEvento" value="bg-success">
+                                    <label class="form-check-label text-success"><i class="fas fa-circle" style="color: #00B74A"></i></label>
+                                  </div>
+                                  <div class="form-check form-check-inline ml-2">
+                                    <input class="form-check-input" type="radio" name="colorEvento" formControlName="colorEvento" value="bg-danger">
+                                    <label class="form-check-label text-danger"><i class="fas fa-circle" style="color: #F93154"></i></label>
+                                  </div>
+                                  <div class="form-check form-check-inline ml-2">
+                                    <input class="form-check-input" type="radio" name="colorEvento" formControlName="colorEvento" value="bg-warning">
+                                    <label class="form-check-label text-warning"><i class="fas fa-circle" style="color: #FFA900"></i></label>
+                                  </div>
+                                  <div class="form-check form-check-inline ml-2">
+                                    <input class="form-check-input" type="radio" name="colorEvento" formControlName="colorEvento" value="bg-info">
+                                    <label class="form-check-label text-info"><i class="fas fa-circle" style="color: #39C0ED"></i></label>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-success waves-effect waves-light save-category">Guardar</button>
+                                  <button type="button"  (click)="cerrarModal()" class="btn btn-secondary waves-effect">Cerrar</button>
+                                </div>
+                              </form>
+                            </div>
+                        </div>
+                        <!--Ingreso de Materiales-->
+                        <div class="tab-pane  p-20" id="material" role="tabpanel" *ngIf="mostrarCarpetaMateriales" >
+                          <div class="form-row">
+                            <form [formGroup]="formMateriales"
+                                  (ngSubmit)="GuardarMateriales()"
+                                  class="row col-md-12">
+                                  <div class="form-group col-md-6">
+                                    <label>Tema</label>
+                                    <select class="form-select form-select-sm" 
+                                            formControlName="idTema" 
+                                            (change)="temaSeleccionado($event)"
+                                            aria-label=".form-select-sm example"
+                                           >
+                                           <option value="0" disabled selected>Seleccione un tema</option>          
+                                      <option *ngFor="let tema of temas"  
+                                            [value]="tema.idTema"
+                                            >{{tema.tema}}</option>
+                                      </select>
+                                      <p *ngIf="validarCamposMateriales('idTema')" class="form-text text-danger">*Este campo es obligatorio</p>
+                                  </div> 
+                                  <div class="form-group col-md-6">
+                                    <label>Temario</label>
+                                    <select class="form-select form-select-sm"
+                                            (change)="temarioSeleccionado($event.target.value)" 
+                                            formControlName="idTemario" 
+                                            aria-label=".form-select-sm example"
+                                            >
+                                       <option value="0" disabled selected>Seleccione un temario</option>     
+                                      <option *ngFor="let temario of temarios"  [value]="temario.idTemario">{{temario.temario}}</option>
+                                    </select>
+                                    <p *ngIf="validarCamposMateriales('idTemario')" class="form-text text-danger">*Este campo es obligatorio</p>
+                                  </div>
+                            </form>
+                            <div class="form-row p-0">
+                              <app-dropzone   (resFiles)="traerFiles( $event )" 
+                                              [configDropzone]="config"
+                                              [limpiar]="limpiarDropZone">
+                              </app-dropzone>
+                            </div>
+
+                            <div class="form-row">
+                              <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar" *ngIf="archivosGuardados.length!=0">
+                                <table class="table table-bordered table-sm">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Archivo</th>
+                                      <th scope="col">Nombre</th>
+                                      <th scope="col">Tema</th>
+                                      <th scope="col">Temario</th>
+                                      <th scope="col">Acciones</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let archivo of archivosGuardados">
+                                      <td class="text-center">
+                                        <img *ngIf="archivo.idArchivo" src="../../../../assets/images/pdf-icon.png" 
+                                        alt="archivo-pdf" 
+                                        style="width: 20px;height: 20px;">
+                                      </td>
+                                      <td style="font-size: 12px;">{{archivo.nombreArchvio}}</td>
+                                      <td style="font-size: 12px;">{{archivo.tema}}</td>
+                                      <td style="font-size: 12px;">{{archivo.temario}}</td>
+                                      <td class="text-nowrap text-center">
+                                        <a  class="cursor" 
+                                            (click)="eliminarArchivo(archivo)"
+                                            data-toggle="tooltip" 
+                                            data-original-title="Borrar" 
+                                            title="Borrar"><i class="fas fa-trash-alt text-danger"></i> 
+                                        </a> 
+                                    </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="form-row d-none">
+                              <div class="btn-group text-right">
+                                <button type="button" (click)="GuardarMateriales()" class="btn btn-success">Agregar</button>
+                                <button type="button" class="btn btn-secondary">Nuevo</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+          </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL -->

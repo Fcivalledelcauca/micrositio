@@ -1,0 +1,58 @@
+<div class="fondo-modal-imagen animated fadeIn fast" [class.ocultar]="modaDescargaArchivoS.ocultarModal">
+    <!-- sample modal content -->
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="vcenter">Archivos - {{grupo.Nombre_Grupo}} </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-md-12">
+                        <app-buscar-mcipios #buscarMunicipio
+                                            (terminoSeleccionado)="terminoSeleccionado($event)"
+                                            [actualizar]="actualizarMcipio"
+                                            [terminoEnviado]="terminoEnviado"
+                                            >
+                        </app-buscar-mcipios> 
+                    </div>
+                    <div class="table-responsive mt-3" *ngIf="mostrarResultados">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-nowrap text-center">Archivo</th>
+                                    <th>Título</th>
+                                    <th>Descripción</th>
+                                    <th class="text-nowrap text-center">Descargar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let doc of listadoDocumentos">
+                                    <td class="text-center">
+                                        <img *ngIf="doc.archivo" src="../../../../assets/images/pdf-icon.png" 
+                                        alt="archivo-pdf" 
+                                        style="width: 30px;height: 30px;">
+                                    </td>
+                                    <td>{{ doc.titulo }}</td>
+                                    <td>{{ doc.descripcion }}</td>
+                                    <td class="text-nowrap text-center">
+                                        <a (click)="descargarArchivo(doc)" 
+                                            data-toggle="tooltip" 
+                                            data-original-title="Descargar" 
+                                            title="Descarga" 
+                                            class="text-muted cursor">
+                                            <i class="fas fa-file-download" text-info m-r-10 style="font-size:25px;" ></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info waves-effect text-white" (click)="cerrarModal()">Cerrar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->

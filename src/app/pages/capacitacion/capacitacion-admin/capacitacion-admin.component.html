@@ -1,0 +1,58 @@
+<!-- <div class="preloader p-0">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label">FCI Valle del Cauca</p>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <h3 class="text-center">Municipio de {{municipio}}</h3>
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-3 pt-3">
+                        <div class="card-body" >
+                            <button (click)="crearNuevoEvento($event)" tabindex="10" class="btn m-t-10 btn-success w-100 waves-effect waves-light text-white">
+                                <i class="ti-plus"></i> Agregar un evento
+                            </button>
+                            
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="calendar-events" class="" >
+                                        <div *ngFor="let ev of cadmin.eventos" tabindex="10"  class="calendar-events" style="display: flex;align-items: center;justify-content:space-between;">
+                                            <p class="p-0" style="overflow-wrap: anywhere;"><i class="fas fa-calendar-check text-success" aria-hidden="true"></i> {{ev.title}}</p>
+                                            <p class="p-0"><button class="btn" (click)="eliminarEventos(ev)"><i class="fa fa-trash text-danger"></i></button></p>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                       
+                        </div>
+                       
+                        </div>
+                    </div> 
+                    <div class="col-lg-9">
+                        <div class="card-body b-l calender-sidebar">
+                            <p-fullCalendar [events]="eventos" 
+                                            #calendario 
+                                            [options]="optionsCalendario"
+                                            (eventResize)="updateEvent($event.detail)" 
+                                            (clickButton)="clickButton($event.detail)"
+                                            (keyup.enter)="funcionkey($event)">
+                            </p-fullCalendar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modaldocente (eventoGuardado)="consultarEventos()" 
+                    [limpiarTitulo]="limpiarTitulo"
+                    [idMunicipio]="idMunicipio"
+                    [idEvento]="idEvento">
+</app-modaldocente>

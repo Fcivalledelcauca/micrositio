@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-sm bg-white navbar-light shadow sticky-top p-0 z-indexco" >
+    <a  href="#" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <div tabindex="1">  <img src="../../../../assets/images/home/fcivalle.png" title="Logo de Valle inteligente y escudo de la Gobernación del Valle del Cauca" alt="Logo de Valle inteligente y escudo de la Gobernación del Valle del Cauca" class="dark-logo logo-size img-responsive w-50"  /> </div> 
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+       <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+           <div title="INICIO"><a tabindex="2" routerLink="/public/home"     (keydown.enter)="rutainicio()"    class="nav-item nav-link text-nowrap title" routerLinkActive="active"><i class=" fas fa-home" ></i> INICIO</a></div> 
+           <div title="DIFUSIÓN"><a tabindex="3" routerLink="/public/deploy" (keydown.enter)="rutainicio()" class="nav-item nav-link text-nowrap title" routerLinkActive="active"><i class="icons-Loudspeaker"></i> DIFUSIÓN</a> </div>
+           <div title="CAPACITACIÓN"> <a tabindex="4"                        (keydown.enter)="capacitacion()" (click)="capacitacion()"  class="nav-item nav-link cursor text-nowrap title" routerLinkActive="active"><i class="icon-graduation"></i> CAPACITACIÓN</a> </div>
+           <div title="POLÍTICA DE DATOS"> <a tabindex="5"                   (keydown.enter)="rutainicio()" href=" ../../../../assets/docs/PO-M11-P1-01.pdf" target="_blank" class="nav-item nav-link text-nowrap title" routerLinkActive="active"><i class="far fa-file-pdf"></i> POLÍTICA DE DATOS</a> </div>
+           <div title="CONTÁCTENOS"> <a tabindex="6"                         (keydown.enter)="rutainicio()" routerLink="/public/contact" class="nav-item nav-link text-nowrap title" routerLinkActive="active"><i class="icons-Envelope"></i> CONTÁCTENOS</a> </div>
+           <div title="CERRAR SESIÓN"> <a tabindex="7"                       (keydown.enter)="logout()" class="nav-item nav-link cursor text-nowrap title"  
+                (click)="logout()" *ngIf="autService.autenticado">
+                <i class=" fas fa-sign-out-alt"></i>
+                <span class="text-nowrap">CERRAR SESIÓN</span>
+            </a> </div>
+            <!--<a tabindex="8" href="#" class="nav-item nav-link title">
+                <div class="spinner-border spinner-border-sm text-secondary" 
+                            role="status" 
+                            *ngIf="spinner">
+                            <span class="sr-only">Cargando...</span>
+                </div>
+            </a>-->
+        </div>
+    </div>
+  </nav>
+  

@@ -1,0 +1,41 @@
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader p-0">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label">FCI Valle del Cauca</p>
+    </div>
+</div>
+<div class="row py-5">
+    <div clas="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text-center title">LISTADO GENERAL DE LOS MUNICIPIOS</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="title">Código Dane</th>
+                                    <th class="title">Nombre</th>
+                                    <th class="title">Región</th>
+                                    <th class="title">Categoría ruralidad</th>
+                                    <th class="title">Dotaciones iniciales</th>
+                                    <th class="title">Grupo Par</th>
+                                </tr>
+                            </thead>
+                           
+                        <tbody>
+                            <tr *ngFor="let municipio of municipioDisplay" > 
+                                <td tabindex="30">{{municipio.CodigoDane}}</td>
+                                <td tabindex="31">{{municipio.Nombre}}</td>
+                                <td tabindex="32">{{municipio.Region}}</td>
+                                <td tabindex="33">{{municipio.Categoria_Ruralidad}}</td>
+                                <td tabindex="34">{{municipio.Dotaciones_Iniciales}}</td>
+                                <td tabindex="35">{{municipio.Grupo_Par}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>

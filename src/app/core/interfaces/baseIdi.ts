@@ -1,0 +1,34 @@
+export interface BaseIdi {
+    idBaseIdi?: number;
+    idTablero: number | null;
+    lote: string;
+    codigoDane: string;
+    municipio: string;
+    d1TalentoHumano: number | null;
+    d2DireccionamientoEstrategicoPlaneacion: number | null;
+    d3GestionResultadosValores: number | null;
+    d4EvaluacionResultados: number | null;
+    d5InformacionComunicacion: number | null;
+    d6GestionConocimiento: number | null;
+    d7ControlInterno: number | null;
+    p1GestionEstrategicaTalentoHumano: number | null;
+    p2Integridad: number | null;
+    p3PlaneacionInstitucional: number | null;
+    p4GestionPresupuestalEficienciaGastoPublico: number | null;
+    p5FortalecimientoOrganizacionalSimplificacionProcesos: number | null;
+    p6GobiernoDigital: number | null;
+    p7SeguridadDigital: number | null;
+    p8DefensaJuridica: number | null;
+    p9TransparenciaAccesoInformacionLuchaContraCorrupcion: number | null;
+    p10ServicioCiudadano: number | null;
+    p11RacionalizacionTramites: number | null;
+    p12ParticipacionCiudadanaGestionPublica: number | null;
+    p13SegumientoEvaluacionDesempe: number | null;
+    P14GestionDocumental              :number | null;
+    P15GestionConocimiento            :number | null;
+    P16ControlInterno                 :number | null;
+    P17MejoraNormativa                :number | null;
+    P18GestionInformacionEstadistica  :number | null;
+    Idi                               :number | null;
+    Activo                            :boolean | true;
+}

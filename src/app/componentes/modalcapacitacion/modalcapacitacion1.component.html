@@ -1,0 +1,95 @@
+
+<div class="fondo-modal-imagen animated fadeIn fast" [class.ocultar]="modalService.ocultarModal">
+    <!-- sample modal content -->
+    <div id="responsive-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Evento <span class="h3">{{evento.titulo}}</span></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Capacitación</h4>
+                        <h6 class="card-subtitle">Visualizar el Objetivo</h6>
+                        <!-- Nav tabs -->
+                        <div class="vtabs">
+                            <ul class="nav nav-tabs tabs-vertical" role="tablist">
+                                <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#descripcion" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Objetivos</span> </a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#material" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Material</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#prueba" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Prueba</span></a> </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content container-fluid">
+                                <div class="tab-pane active" id="descripcion" role="tabpanel">
+                                    <p class="h4">{{descripcion}}</p>
+                                    <a [href]="evento.link">{{evento.link}}</a>
+                                    <div class="p-2 img-reponsive w-30">
+                                        <img [src]="evento.imagen" alt="Imagen Objetivos">
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="material" role="tabpanel">
+                                    <div class="accordion accordion-flush border-1 rounded" id="accordionFlushExample">
+                                        <div *ngFor="let te of evento.temas" class="accordion mt-2 ">
+                                            <h2 class="accordion-header" id="flush-headingOne">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                    [attr.data-bs-target]="'#' + 'colappse' + te.idTema " aria-expanded="false"
+                                                    aria-controls="flush-collapseOne">
+                                                    {{te.nombreTema}}
+                                                </button>
+                                            </h2>
+                                            <div [id]="'colappse' + te.idTema" class="accordion-collapse collapse"
+                                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                                <div *ngFor="let tm of te.temarios" class="accordion-body border border-1">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <b> {{tm.nombreTemario}} </b>
+                                                        </div>
+                                                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                                            <div class="table-responsive" *ngFor="let arc of tm.archivos">
+                                                                <table class="table table-bordered">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="text-center">
+                                                                                    <img *ngIf="arc.archivo" src="../../../assets/images/pdf-icon.png" class="w"
+                                                                                        alt="archivo-pdf">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>{{arc.nombreArchivo}}</td>
+                                                                            <td> <a (click)="descargarArchivo(arc)" data-toggle="tooltip" data-original-title="Descargar"
+                                                                                    title="Descarga" class="text-muted cursor d-block">
+                                                                                    <i class="fas fa-file-download" text-info m-r-10 style="font-size:25px;"></i>
+                                                                                </a></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane p-20" id="prueba" role="tabpanel">
+                                    <table class="table table-hover">
+                                         <tbody>
+                                             <tr *ngFor="let te of evento.temas">
+                                                 <td>{{te.nombreTema}}</td>
+                                                 <td><a (click)="abrirModalExamen(te)" class="cursor text-primary" >Abrir el test</a></td>
+                                             </tr>
+                                         </tbody>   
+                                    </table>
+                                </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</div>
+<app-modalexamenpresentado [idTemaExamen]="idTemaExamen"></app-modalexamenpresentado>

@@ -1,0 +1,16 @@
+
+.prop-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 40px;
+    line-height: 45px;
+    text-indent: 5px;
+    background-color: rgb(64, 84, 178);
+    color: rgb(255, 255, 255);
+    right: 0px;
+    top: 30%;
+    z-index: 9999;
+    opacity: 1;
+    border-style: solid;
+    border-width: 5px;
+  }

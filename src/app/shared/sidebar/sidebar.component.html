@@ -1,0 +1,48 @@
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- User Profile-->
+                <div class="user-profile" tabindex="5">
+                    <div class="user-pro-body">
+                        <div><img [src]="imagenBD" alt="user-img" class="img-circle"></div>
+                        <div class="text-center">
+                            <p class="capitalizacion hide-menu mb-0" >{{ this.authService.usuario | lowercase }}</p>
+                            <p class="capitalizacion hide-menu">{{  this.authService.rol | lowercase  }}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" >
+                        <!-- <li class="nav-small-cap" >--- {{ menu.menu }}</li> -->
+                        <li *ngFor="let menu of menuItems; let i = index ;" routerLinkActive="active"  tabindex="{{i + 7 }}"  (keyup.enter)="onKeydown($event,i + 1 )" id="{{i + 1 }}" > 
+                            <a class="has-arrow waves-effect waves-dark" aria-expanded="false" tabindex="{{i + 7 }}" id="mprincipal{{i + 1 }}"    >
+                                <i [ngClass]="menu.icon"></i>
+                                <span class="hide-menu">
+                                    {{menu.menu}}
+                                    <span class="badge rounded-pill bg-cyan ms-auto">
+                                        {{ menu.child?.length }}
+                                    </span>
+                                </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse" id="opencollapse{{i + 1 }}" >
+                                <li *ngFor="let submenu of menu.child">
+                                    <a [routerLink]="submenu.link" tabindex="{{i + 7 }}" id="submprincipal">{{ submenu.submenu}}</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->

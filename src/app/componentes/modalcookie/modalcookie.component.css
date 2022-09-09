@@ -1,0 +1,20 @@
+.container {
+    padding: 2rem 0rem;
+  }
+  
+  .modal-dialog {
+    margin-top: 0rem;
+    max-width: 100%;
+    
+    }
+    .modal-content {
+        border-radius: 0rem;
+    
+  }
+  .btn {
+    margin: 0.2rem;
+  }
+  .z-indexco{
+    z-index: 9999;
+}
+  

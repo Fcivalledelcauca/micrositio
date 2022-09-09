@@ -1,0 +1,15 @@
+.color-gris{
+    display: block;
+    height: 40px;
+    background-color: aqua !important;
+}
+
+.fc-colorfondo { /* when user is selecting cells */
+	background: #bce8f1;
+	opacity: .3;
+	filter: alpha(opacity=30); /* for IE */
+}
+
+td:hover{
+    background-color: azure;
+}

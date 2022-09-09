@@ -1,0 +1,206 @@
+<!-- Modal Add Category -->
+<div class="fondo-modal-imagen animated fadeIn fast" role="dialog" tabindex="-1"
+     id="add-new-event" 
+     [class.ocultar]="modalService.ocultarModal"> 
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Agregar un </strong> nuevo examen</h4>
+                <button type="button" class="btn-close" (click)="cerrarModal()" data-bs-dismiss="modal" aria-hidden="true" *ngIf="
+                !minimopreguntas"></button>
+            </div>
+            <div class="modal-body">
+              <div class="card">
+                <div class="card-body p-0">
+                    <!-- Tab panes -->
+                    <div class="tab-content borderform">
+                        <!--Crear la cabecera del examen-->
+                        <div class="p-20" *ngIf="mostrar">
+                          <form [formGroup]="formExamen" (ngSubmit)="guardarEditarExamen()">
+                            <section class="summary-section">
+                                <div class="form-group">
+                                    <label class="form-label" style="margin-left: 0px;">Nombre</label>
+                                    <input type="text" 
+                                          formControlName="nombre" 
+                                          class="form-control input-sm" 
+                                          placeholder="Escriba un nombre para el examen." 
+                                          value="">
+                                    <span class="form-text text-danger"
+                                        *ngIf="validarCampos('nombre')">
+                                        El Campo es obligatorio
+                                      </span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" style="margin-left: 0px;">Mínima puntuación</label>
+                                    <input type="number" 
+                                          formControlName="puntuacion" 
+                                          class="form-control input-sm" 
+                                          readonly>
+                                    <span class="form-text text-danger"
+                                        *ngIf="validarCampos('puntuacion')">
+                                        El Campo es obligatorio
+                                      </span>
+                                </div>
+                            </section>
+                            <div class="form-group">
+                              <label>Tema</label>
+                              <select class="form-select" 
+                                      formControlName="idTema" 
+                                      aria-label=".form-select-sm example">
+                                <option [disabled]="true" value="0">Seleccione un tema</option>
+                                <option *ngFor="let tema of temas"  
+                                      [value]="tema.IdTema"
+                                      >{{tema.Tema}}</option>
+                                </select>
+                                <p *ngIf="validarCampos('idTema')" class="form-text text-danger">*Este campo es obligatorio</p>
+                            </div> 
+                            <div class="summary-section">
+                              <label class="form-label" style="margin-left: 0px;">Instrucciones</label>
+                              <textarea type="text" 
+                                        formControlName="instrucciones" 
+                                        class="form-control input-sm" 
+                                        rows="3">
+                              </textarea>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 72.8px;"></div><div class="form-notch-trailing"></div></div></div>
+                            <div class="grupo-botones-sig">
+                              <button type="submit" class="btn btn-success waves-effect waves-light text-white save-category">Siguiente</button>
+                              <button type="button" (click)="cerrarModal()" class="btn btn-secondary waves-effect">Cerrar</button>
+                           
+                            </div>
+                          </form>
+                        </div>
+                        <div class="p-20"  *ngIf="ocultar">
+                          <div class="form-row">
+                              <h4>Preguntas del Examen</h4> Cada Cuestionario debe tener mínimo 10 preguntas
+                          </div>
+                          <!--Preguntas-->
+                          <form [formGroup]="formPregunta">
+                            <section class="summary-section">
+                                <div class="form-group">
+                                    <label class="form-label" style="margin-left: 0px;">Cuál es la pregunta?</label>
+                                    <input type="text" formControlName="pregunta" class="form-control input-sm" placeholder="Escriba la pregunta." value="">
+                                    <span class="form-text text-danger"
+                                        *ngIf="validarCampos('nombre')">
+                                        El Campo es obligatorio
+                                      </span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" style="margin-left: 0px;">Puntos</label>
+                                    <input type="number" formControlName="puntos" class="form-control input-sm" readonly>
+                                    <span class="form-text text-danger"
+                                        *ngIf="validarCampos('puntuacion')">
+                                        El Campo es obligatorio
+                                      </span>
+                                </div>
+                            </section>
+                          </form>
+                          <!--Fin Preguntas-->
+                          <!--Respuestas-->
+                          <div class="summary-section">
+                            <label class="form-label" style="margin-left: 0px;">Opciones</label>
+                            <div class="input-group mb-1">
+                                <input type="text" 
+                                      class="form-control" 
+                                      placeholder="Posible respuesta" 
+                                      name="respuesta"
+                                      [(ngModel)]="respuesta"
+                                      required>
+                                      <div class="input-group-append">
+                                        <button class="btn btn-outline-info ms-1 pb-2" type="button" (click)="agregarRespuesta()">Agregar</button>
+                                      </div>
+                              </div>
+                          </div>
+                          <div class="summary-section mt-0 mb-2">
+                            <div class="input-group mt-1" *ngFor="let array of arrayRespuestas;index as i">
+                              <input type="text" 
+                                      class="form-control" 
+                                      [ngModel]="array.respuesta" 
+                                      name="respuesta_{{i}}"
+                                      [disabled]="true">
+                              <div class="input-group-append">
+                              <button class="btn btn-outline-danger" 
+                                        type="button" 
+                                        (click)="quitarRepuesta(array)"
+                                        data-toggle="tooltip" 
+                                        data-placement="right" 
+                                        title="Quitar respuesta"
+                                        >
+                                    <i class="fas fa-minus"></i></button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="summary-section mt-4">
+                            <label class="form-label" style="margin-left: 0px;">Seleccione la respuesta correcta</label>
+                            <select name="idRespuestaCorrecta" [(ngModel)]="idRespuestaCorrecta" class="form-select">
+                              <option *ngFor="let res of arrayRespuestas" [value]="res.id" >{{res.respuesta}}</option>
+                            </select>
+                          </div>
+                          <!--Fin de Respuestas-->
+                          <div class="summary-section mt-4" *ngIf="preguntasGuardadas.length!=0">
+                            <div >
+                              <table class="table table-bordered">
+                                <thead class="table-light">
+                                  <tr>
+                                    <th>No</th>
+                                    <th>Pregunta</th>
+                                    <th>Puntos</th>
+                                    <th>Acción</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let pregunta of preguntasGuardadas; let i=index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{pregunta.pregunta}}</td>
+                                    <td class="text-center">{{pregunta.puntos}}</td>
+                                    <td class="text-nowrap text-center">
+                                        <a  class="cursor btn btn-sm waves-effect waves-light" 
+                                            (click)="cargarPreguntas(pregunta)"
+                                            data-toggle="tooltip" 
+                                            data-original-title="Editar" 
+                                            title="Editar"><i class="fas fa-pencil-alt text-success m-r-10 text-center"></i>
+                                        </a>
+                                        <a  class="cursor btn btn-sm ml-2 waves-effect waves-light" 
+                                            (click)="eliminarPreguntaGuardada(pregunta)"
+                                            data-toggle="tooltip" 
+                                            data-original-title="Borrar" 
+                                            title="Borrar"><i class="fas fa-trash-alt text-danger  m-r-10 text-center"></i> 
+                                        </a> 
+                                      
+                                  </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div> 
+                          <div class="alert alert-warning" *ngIf="minimopreguntas">Recuerde que debe Completar 10 pregruntas</div>
+                          <div class="grupo-botones-ant">
+                            <button type="button"  
+                                    class="btn btn-outline-primary waves-effect waves-light save-category" 
+                                    *ngIf="!minimopreguntas"
+                                    (click)="pasarAnterior()">Anterior
+                            </button>
+                            <button type="button"  
+                                    class="btn btn-success waves-effect waves-light save-category" 
+                                    (click)="guardarEditarPreguntas()">Guardar
+                            </button>
+                            <button type="button"  
+                                    class="btn btn-warning waves-effect waves-light save-category" 
+                                    (click)="limpiarPreguntas()">Limpiar
+                            </button>
+                            <button type="button"  
+                                    (click)="cerrarModal()" 
+                                    class="btn btn-light waves-effect " 
+                                    *ngIf="!minimopreguntas">Cerrar
+                            </button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+          </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL -->
+

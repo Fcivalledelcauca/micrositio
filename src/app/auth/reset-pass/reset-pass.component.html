@@ -1,0 +1,46 @@
+<div class="login-register" style="background-image:url(../assets/images/background/login-register.jpg);">
+    <div class="login-box card">
+        <div class="card-body">
+            <form class="form-horizontal form-material" 
+                   [formGroup]="formReset"
+                   (submit)="resetClave()">
+                <h3 class="text-center m-b-20">Restablecer Contraseña</h3>
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input class="form-control" 
+                                type="password" 
+                                formControlName="clave"
+                                placeholder="Ingrese una nueva contraseña">
+                        <span style="float:center;" class="form-text text-danger"
+                                *ngIf="validarCampos('clave')">
+                                La contraseña debe de ser mayor de 6 caracteres.
+                        </span>  
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="form-control" 
+                                type="password" 
+                                formControlName="validar"
+                                placeholder="Confirme su contraseña">
+                        <span  style="float:center;" *ngIf="validarCampos('validar')" 
+                                  class="form-text text-danger" >
+                                  *La verificación de la contraseña es incorrecta
+                        </span>                               
+                    </div>
+                </div>
+                <div class="form-group text-center p-b-20">
+                    <div class="col-xs-12">
+                        <button class="btn btn-login btn-lg w-100 text-uppercase text-white"
+                                [disabled]="formReset.pending"
+                                type="submit">
+                            Restablecer
+                        </button>
+
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<!-- ============================================================== -->
+<!-- Topbar header - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<header class="topbar">
+    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+        <!-- ============================================================== -->
+        <!-- Logo -->
+        <!-- ============================================================== -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html" tabindex="1">
+                <!-- Logo icon -->
+                <b>
+                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                    <!-- Dark Logo icon -->
+                    <img src="../../../assets/images/home/valleinv.png" alt="homepage" class="dark-logo mt-1" style="width: 70%;" />
+                    <!-- Light Logo icon -->
+                    <!-- <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /> -->
+                </b>
+                <!--End Logo icon -->
+                <!-- Logo text -->
+                    <!-- dark Logo text -->
+                    <!-- <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" /> -->
+                    <!-- Light Logo text -->    
+                    <!-- <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> -->
+            </a> 
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Logo -->
+        <!-- ============================================================== -->
+        <div class="navbar-collapse"  >
+            <!-- ============================================================== -->
+            <!-- toggle and nav items -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav me-auto" tabindex="2">
+                <!-- This is  -->
+                <li class="nav-item"> <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
+                <!-- ============================================================== -->
+            </ul>
+            <!-- ============================================================== -->
+            <!-- User profile and search -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav my-lg-0" tabindex="3" (keyup.enter)="openperfil()">
+
+                <!-- ============================================================== -->
+                <!-- Comment -->
+                
+                <!-- ============================================================== -->
+                <!-- End Comment -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Messages -->
+                <!-- ============================================================== -->
+               
+                <!-- ============================================================== -->
+                <!-- End Messages -->
+                <!-- ============================================================== -->
+                <li class="nav-item right-side-toggle" id="miperfil" >
+                    <a  class="nav-link waves-effect" 
+                        href="javascript:void(0)" 
+                        data-bs-toggle="dropdown" 
+                        role="button" 
+                        aria-haspopup="true" 
+                        aria-expanded="false">
+                        <i class="ti-settings"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end animated fadeIn fast" id="miperfil_">
+                        <!-- text-->
+                        <a routerLink="usuarios/perfil" class="dropdown-item" tabindex="3"><i class="ti-user"></i> Pérfil</a>
+                        <!-- text
+                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>-->
+                        <!-- text-
+                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>-->
+                        
+                        <!-- text-->
+                        <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a> --> 
+                        <!-- text-->
+                        <div class="dropdown-divider"></div>
+                        <!-- text-->
+                        <a (click)="logout()" class="dropdown-item cursor" tabindex="3" (keyup.enter)="logout()"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
+                        <!-- text-->
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- ============================================================== -->
+<!-- End Topbar header -->
+<!-- ============================================================== -->

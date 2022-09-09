@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/b7cd25bc-e88e-481c-bc49-eadf3bde37b0/resourceGroups/web_app/providers/Microsoft.Web/sites/fcivalledelcauca",
+    "appService.deploySubpath": "dist/fundaprogreso"
+}

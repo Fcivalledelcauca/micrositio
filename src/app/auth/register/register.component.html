@@ -1,0 +1,78 @@
+    <app-pheader></app-pheader>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper" class="step-register formulario-blanco" >
+        <div class="register-box">
+            <div class="">
+               <!--  <a href="javascript:void(0)" class="text-center m-b-40"><img src="../../../assets/images/home/valleinv.png" alt="Home" style="width: 250px;height: 70px;" /><br/></a> -->
+                <!-- multistep form -->
+                <form id="msform" [formGroup]="formRegistro" (submit)="guardarRegistro()">
+                    <!-- progressbar -->
+                    <ul id="eliteregister">
+                        <li class="active">Información Personal</li>
+                        <li>¿ A qué Municipio Pertenece?</li>
+                        <li>Configuración de la Cuenta </li>
+                    </ul>
+                    <!-- fieldsets -->
+                    <fieldset>
+                        <h2 class="fs-title">Información Personal</h2>
+                        <h3 class="fs-subtitle">Primer Paso</h3>
+                        <label style="float:left;">* Nombres y apellidos</label>
+                        <!--<span  style="float:right;" *ngIf="validarCampos('nombreCompleto')" class="form-text text-danger">Este campo es obligatorio</span>-->
+                        <input type="text" name="fname" placeholder="Ingrese sus nombres y apellidos"  formControlName="nombreCompleto" />
+                        <label style="float:left;">* Numero de documento</label>
+                        <span  style="float:right;"*ngIf="validarCampos('documentoIdentidad')" class="form-text text-danger">Este campo es obligatorio</span>
+                        <input type="text" name="lname"  placeholder="Ingrese su documento de identidad" formControlName="documentoIdentidad" />
+                        <label style="float:left;">* Teléfono</label>
+                        <span  style="float:right;" *ngIf="validarCampos('telefono')" class="form-text text-danger">Este campo es obligatorio</span>
+                        <input type="phone" name="phone" placeholder="Ingrese su número de télefono" formControlName="telefono" />
+                        <label style="float:left;">* Dirección</label>
+                        <p    style="float:right;"*ngIf="validarCampos('direccion')" class="form-text text-danger">Este campo es obligatorio</p>
+                        <input type="address" placeholder="Ingrese su dirección" formControlName="direccion"/>
+                        
+
+                        <button type="button" name="next"  [disabled]="validarSiguientePaso1()"  class="next action-button">Siguiente</button>
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Municipio de Procedencia</h2>
+                        <h3 class="fs-subtitle">Seleccione a que municipio pertenece</h3>
+                        <app-buscar-mcipios (terminoSeleccionado)="terminoSeleccionado($event)"
+                                            (idMunicipioSeleccionado)="idMunicipioSeleccionado($event)"
+                                            [actualizar]="actualizarMunicipio"
+                                            [terminoEnviado]="terminoEnviado">
+                        </app-buscar-mcipios> 
+                        <p *ngIf="validarMunicipioVacio()" class="form-text text-danger">El campo Municipio es obligatorio</p>
+                        <input type="button" name="previous" class="previous action-button" value="Anterior" />
+                        <input type="button" name="next"  [disabled]="validarMunicipioVacio()" class="next action-button" value="Siguiente" />
+                    </fieldset>
+                    
+                    <fieldset>
+                        <h2 class="fs-title">Configuración de la Cuenta</h2>
+                        <h3 class="fs-subtitle">Diligencie los campos para la creación de la cuenta.</h3>
+                        <label style="float:left;">* Correo Electrónico</label>
+                        <span style="float:right;" *ngIf="validarCampos('email')" class="form-text text-danger">{{ emailErrors }}</span>
+                        <input type="text" name="email" placeholder="Ingrese su correo electrónico" formControlName="email" />
+                        <label style="float:left;">* Contraseña</label>
+                        <span style="float:right;" class="form-text text-danger" *ngIf="validarCampos('clave')">
+                            La contraseña debe de ser mayor de 6 caracteres.
+                        </span>
+                        <input type="password" name="pass" placeholder="Ingrese una contraseña" formControlName="clave" />
+                        <span style="float:right;" *ngIf="validarCampos('validar')" class="form-text text-danger"> *La verificación de la
+                            contraseña es incorrecta</span>
+                        <label style="float:left;">* Validar Contraseña</label>
+                        <input type="password" name="cpass" placeholder="Confirme su contraseña" formControlName="validar" />
+                        <input type="button" name="previous" class="previous action-button" value="Anterior" />
+                        <button type="submit" [disabled]="formRegistro.pending" class="btn-envio action-button">Enviar</button>
+                    </fieldset>
+                </form>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+<app-pfooter></app-pfooter>

@@ -1,0 +1,33 @@
+<form (ngSubmit)="consultarMunicipios()" autocomplete="off" class="col-md-12 mb-0" [formGroup]="formMunicipio" >
+        <div class="form-group">
+                <input  type="text" 
+                        list="municipios" 
+                        class="form-control" 
+                        formControlName="municipio"
+                        placeholder="Seleccione un municipio" (change)="seleccionar($event)"/>
+                <datalist id="municipios">
+                     <option  *ngFor="let municipio of MunicipiosSugeridos" [value]="municipio.Nombre">{{ municipio.Nombre}}</option>
+                </datalist>
+                <p  style="float:right;" 
+                    *ngIf="Municipionovalido" 
+                     class="form-text text-danger">
+                     {{codMunicipioError}}
+                </p>
+        </div>
+        <!--  <div class="form-floating"> 
+        <input  type="text" 
+                class="form-control" 
+                id="tb-fname" 
+                formControlName="municipio"
+                (input)="teclaPrecionada()"
+                placeholder="Digite el municipio que desea seleccionar"/>
+        <p    style="float:right;" *ngIf="Municipionovalido" class="form-text text-danger">{{codMunicipioError}}</p>                
+        <ul class="list-group mt-0" *ngIf="mostrarSugerencia">
+                <li class="list-group-item list-group-item-action" 
+                    *ngFor="let municipio of MunicipiosSugeridos" 
+                    (click)="seleccionar( municipio )"
+                    (keyup.enter)="seleccionar( municipio)">
+                    {{municipio.Nombre}}
+                </li>
+        </ul>-->
+</form>

@@ -1,0 +1,86 @@
+<div class="fondo-modal-imagen animated fadeIn fast" [class.ocultar]="modalService.ocultarModal">
+    <!-- sample modal content -->
+    <div id="responsive-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Temas</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="modal-body col-md-12 row">
+                    <div class="col-md-5">
+                        <form   [formGroup]="formTema" 
+                                (submit)="guardarTema()">
+                            <div class="form-group">
+                                <label for="recipient-name" class="form-label">Tema Principal</label>
+                                <input type="text" formControlName="tema" class="form-control" placeholder="Escriba un nombre para el tema">
+                            </div>
+                            <div class="form-row text-start">
+                                    <button type="submit" 
+                                            #botontema
+                                            class="btn btn-success waves-effect waves-light text-white mr-1">{{botonGuardar}}</button>
+                            </div>
+                        </form>
+                        <div class="alert alert-success mt-2 p-1" role="alert" *ngIf="show">
+                            {{mensaje}}
+                        </div>
+                        <form   [formGroup]="formTemario" 
+                                (submit)="guardarTemario()"
+                                *ngIf="tema">
+                            <div class="form-group">
+                                <label for="recipient-name" class="form-label">Temario</label>
+                                <input type="text" formControlName="temario" class="form-control" placeholder="Escriba un nombre para el temario">
+                            </div>
+                            <div class="form-row text-start">
+                                    <button type="submit" 
+                                            class="btn btn-success waves-effect waves-light text-white me-2 mr">
+                                            <i class="fas fa-plus"></i>
+                                            {{botonAdicionar}}
+                                    </button>
+                                    <button type="button" 
+                                            class="btn btn-warning waves-effect waves-light text-white mr-1"
+                                            (click)="limpiar()">Limpiar</button>
+                                   
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-7">
+                        <label for="recipient-name" class="form-label">Temarios Registrados</label>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre Temario</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let temario of temarios">
+                                    <td>{{temario.temario}}</td>
+                                    <td class="text-nowrap">
+                                        <a  class="cursor btn btn-outline-light btn-sm mr-2" 
+                                            (click)="setearTemario(temario)"
+                                            data-toggle="tooltip" 
+                                            data-original-title="Editar" 
+                                            title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i>
+                                        </a>
+                                        <a  class="cursor" 
+                                            (click)="eliminarTemario(temario)"
+                                            data-toggle="tooltip" 
+                                            data-original-title="Borrar" 
+                                            title="Borrar"><i class="fas fa-trash-alt text-danger"></i> 
+                                        </a> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</div>
+
+
+

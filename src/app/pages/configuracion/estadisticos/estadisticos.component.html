@@ -1,0 +1,858 @@
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<!-- <div class="preloader">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label">Fci Valle del Cauca</p>
+    </div>
+</div> -->
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Ingresar Información</h4>
+            <ul class="nav nav-tabs" role="tablist" tabindex="30">
+                <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#informacion"
+                        role="tab"><span class="hidden-sm-up"></span><span class="hidden-xs-down">Información</span></a>
+                </li>
+                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#detalle" role="tab"><span
+                            class="hidden-sm-up"></span> <span class="hidden-xs-down">Detalle</span></a> </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content tabcontent-border">
+                <div class="tab-pane active" id="informacion" role="tabpanel">
+                    <div class="p-20 row">
+                        <form (submit)="guardarCabecera()" [formGroup]="formTablero" class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" tabindex="31">
+                                    <label class="form-label">Lote</label>
+                                    <input type="text" id="firstName" class="form-control" formControlName="lote"
+                                        placeholder="Lote de Información" readonly>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group" tabindex="32">
+                                    <label class="form-label">Nombre</label>
+                                    <input type="text" id="lastName" class="form-control form-control-danger"
+                                        placeholder="Nombre" formControlName="nombre">
+                                    <small class="form-control-feedback" *ngIf="validarCampos('nombre')">El nombre es un
+                                        campo obligatorio</small>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2 mt-4 pt-1" tabindex="33">
+                                <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i>
+                                    Guardar</button>
+                            </div>
+                        </form>
+                        <!--Acordion base-mdm-->
+                        <a class="card-header mb-3" id="heading11" tabindex="34">
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse1"
+                                aria-expanded="false" aria-controls="collapse1">
+                                <h5 class="mb-0 text-dark f-w-bold">BASE-MDM</h5>
+                            </button>
+                        </a>
+                        <div id="collapse1" class="collapse" aria-labelledby="heading11" data-parent="#accordian-3" tabindex="34">
+                            <div class="card-body">
+                                <h6 class="card-subtitle">Selecciona el documento de excel con los datos que deseas
+                                    subir.</h6>
+                                <div class="form-row mb-3" >
+                                    <div class="input-group">
+                                        <input type="file" class="custom-file-input form-control"
+                                            (change)="fileChange($event,'basemdm')" #inputfilemdm>
+                                        <button class="btn btn-outline-secondary" type="button"
+                                            (click)="limpiar('basemdm')" id="inputGroupFileAddon04">
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="alert alert-success text-center" *ngIf="cd1">
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <p>Cargando Información</p>
+                                </div>
+                                <div class="table-responsive-sm" *ngIf="arrayResMdm.length>0">
+                                    <table data-bs-toggle="table" data-height="250" data-mobile-responsive="true"
+                                        class="table table-striped table-bordered table-sm">
+                                        <caption>Información subida</caption>
+                                        <thead class="table-light">
+                                            <!-- start row -->
+                                            <tr>
+                                                <th>Lote</th>
+                                                <th class="text-center">Cantidad de Registros</th>
+                                                <th class="text-center">Acción</th>
+                                            </tr> <!-- end row -->
+                                        </thead>
+                                        <tbody>
+                                            <!-- start row -->
+                                            <tr id="tr-id-1" class="tr-class-1" *ngFor="let row of arrayResMdm">
+                                                <td id="td-id-1" class="td-class-1"> {{row.lote}} </td>
+                                                <td class="text-center">{{row.cantRegistro}}</td>
+                                                <td class="text-center">
+                                                    <a (click)="mostrarBaseMdm(row)" class="text-info cursor mr-2"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Visualizar Información"><i class="fas fa-eye"></i></a>
+                                                    <a (click)="eliminarBaseMdm(row)" class="text-danger cursor"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Eliminar datos"><i class="fas fa-trash"></i></a>
+                                                </td>
+                                            </tr> <!-- end row -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="table-responsive" *ngIf="baseMdm.length>0">
+                                    <table data-bs-toggle="table" data-height="250" data-mobile-responsive="true"
+                                        class="table table-striped table-bordered table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th> CodigoDane </th>
+                                                <th> Grupo </th>
+                                                <th> MovilizacionRecursos </th>
+                                                <th> EjecucionRecursos </th>
+                                                <th> GobiernoAbierto </th>
+                                                <th> OrdenamientoTerritorial </th>
+                                                <th> Gestion </th>
+                                                <th> Educacion </th>
+                                                <th> Salud </th>
+                                                <th> ServiciosPublicos </th>
+                                                <th> SeguridadConvivencia </th>
+                                                <th> Resultados </th>
+                                                <th> AjusteResultados </th>
+                                                <th> Mdm </th>
+                                                <th> RankingMdm </th>
+                                                <th> RankingMov </th>
+                                                <th> RankingEjecu </th>
+                                                <th> RankingGob </th>
+                                                <th> RankingOt </th>
+                                                <th> RankingGestion </th>
+                                                <th> RankingEdu </th>
+                                                <th> RankingSalud </th>
+                                                <th> RankingServPub </th>
+                                                <th> RankingSeguridad </th>
+                                                <th> RankingResultados </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let row of baseMdm
+                                                    | paginate:{
+                                                            itemsPerPage:cantidadRegistrosPorPagina
+                                                            ,currentPage:pagina
+                                                            ,totalItems:cantidadRegistros 
+                                                        }
+                                                    ">
+                                                <td>{{row.codigoDane }} </td>
+                                                <td>{{row.grupo }} </td>
+                                                <td>{{row.movilizacionRecursos }} </td>
+                                                <td>{{row.ejecucionRecursos }} </td>
+                                                <td>{{row.gobiernoAbierto }} </td>
+                                                <td>{{row.ordenamientoTerritorial}} </td>
+                                                <td>{{row.gestion }} </td>
+                                                <td>{{row.educacion }} </td>
+                                                <td>{{row.salud }} </td>
+                                                <td>{{row.serviciosPublicos }} </td>
+                                                <td>{{row.seguridadConvivencia }} </td>
+                                                <td>{{row.resultados }} </td>
+                                                <td>{{row.ajusteResultados }} </td>
+                                                <td>{{row.mdm }} </td>
+                                                <td>{{row.rankingMdm }} </td>
+                                                <td>{{row.rankingMov }} </td>
+                                                <td>{{row.rankingEjecu }} </td>
+                                                <td>{{row.rankingGob }} </td>
+                                                <td>{{row.rankingOt }} </td>
+                                                <td>{{row.rankingGestion }} </td>
+                                                <td>{{row.rankingEdu }} </td>
+                                                <td>{{row.rankingSalud }} </td>
+                                                <td>{{row.rankingServPub }} </td>
+                                                <td>{{row.rankingSeguridad }} </td>
+                                                <td>{{row.rankingResultados }} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination justify-content-end">
+                                        <pagination-controls (pageChange)="pagina=$event" maxSize="9"
+                                            directionLinks="true" autoHide="true" responsive="true"
+                                            previousLabel="Anterior" nextLabel="Siguiente"
+                                            screenReaderPaginationLabel="Paginación" screenReaderPageLabel="página"
+                                            screenReaderCurrentLabel="Estas en la página">
+                                        </pagination-controls>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin Acordion base-mdm-->
+
+                        <!--Acordion base-idf-->
+                        <a class="card-header mb-3" id="heading11" tabindex="35">
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse2"
+                                aria-expanded="false" aria-controls="collapse1">
+                                <h5 class="mb-0 text-dark f-w-bold">BASE-IDF</h5>
+                            </button>
+                        </a>
+                        <div id="collapse2" class="collapse" aria-labelledby="heading11" data-parent="#accordian-3">
+                            <div class="card-body">
+                                <h6 class="card-subtitle">Selecciona el documento de excel con los datos que deseas
+                                    subir.</h6>
+                                <div class="form-row mb-3">
+                                    <div class="input-group">
+                                        <input type="file" class="custom-file-input form-control"
+                                            (change)="fileChange($event,'baseidf')" #inputfileidf>
+                                        <button class="btn btn-outline-secondary" type="button"
+                                            (click)="limpiar('baseidf')" id="inputGroupFileAddon04">
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="alert alert-success text-center" *ngIf="cd2">
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <p>Cargando Información</p>
+                                </div>
+                                <!-- tabla resultado -->
+                                <div class="table-responsive-sm" *ngIf="arrayResIdf.length>0">
+                                    <table data-bs-toggle="table" data-height="250" data-mobile-responsive="true"
+                                        class="table table-striped table-bordered table-sm">
+                                        <caption>Información subida</caption>
+                                        <thead class="table-light">
+                                            <!-- start row -->
+                                            <tr>
+                                                <th>Lote</th>
+                                                <th class="text-center">Cantidad de Registros</th>
+                                                <th class="text-center">Acción</th>
+                                            </tr> <!-- end row -->
+                                        </thead>
+                                        <tbody>
+                                            <!-- start row -->
+                                            <tr id="tr-id-1" class="tr-class-1" *ngFor="let row of arrayResIdf">
+                                                <td id="td-id-1" class="td-class-1"> {{row.lote}}</td>
+                                                <td class="text-center">{{row.cantRegistro}}</td>
+                                                <td class="text-center">
+                                                    <a (click)="mostrarBaseIdf(row)" class="text-info"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Visualizar Información"><i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a (click)="eliminarBaseIdf(row)" class="text-danger cursor"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Eliminar datos"><i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr> <!-- end row -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--fin tabla resultado -->
+                                <!--tabla Muestra los registros subidos -->
+                                <div class="form-row" *ngIf="baseIdf.length>0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th> idBaseIdf </th>
+                                                    <th> idTablero </th>
+                                                    <th> lote </th>
+                                                    <th> codigoDane </th>
+                                                    <th> municipio </th>
+                                                    <th> caDependenciaTransferencia </th>
+                                                    <th> caRelevanciaFbkFijo </th>
+                                                    <th> caEndeudamientoLargoPlazo </th>
+                                                    <th> caAhorroCorriente </th>
+                                                    <th> caBalancePrimario </th>
+                                                    <th> resultado </th>
+                                                    <th> caResultado </th>
+                                                    <th> caHolgura </th>
+                                                    <th> caCapacidadEjecucionIngresos </th>
+                                                    <th> bonificacionEsfuerzoPropio </th>
+                                                    <th> gestion </th>
+                                                    <th> gestionBonos </th>
+                                                    <th> caGestion </th>
+                                                    <th> nuevoIdf </th>
+                                                    <th> nuevoIdfSb </th>
+                                                    <th> rango </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let row of baseIdf
+                                                | paginate:{
+                                                        itemsPerPage:cantidadRegistrosPorPagina
+                                                        ,currentPage:pagina
+                                                        ,totalItems:cantidadRegistros 
+                                                    }
+                                                ">
+                                                    <th> {{ row.idBaseIdf }} </th>
+                                                    <th> {{ row.idTablero }} </th>
+                                                    <th> {{ row.lote }} </th>
+                                                    <th> {{ row.codigoDane }} </th>
+                                                    <th> {{ row.municipio }} </th>
+                                                    <th> {{ row.caDependenciaTransferencia }} </th>
+                                                    <th> {{ row.caRelevanciaFbkFijo }} </th>
+                                                    <th> {{ row.caEndeudamientoLargoPlazo }} </th>
+                                                    <th> {{ row.caAhorroCorriente }} </th>
+                                                    <th> {{ row.caBalancePrimario }} </th>
+                                                    <th> {{ row.resultado }} </th>
+                                                    <th> {{ row.caResultado }} </th>
+                                                    <th> {{ row.caHolgura }} </th>
+                                                    <th> {{ row.caCapacidadEjecucionIngresos }} </th>
+                                                    <th> {{ row.bonificacionEsfuerzoPropio }} </th>
+                                                    <th> {{ row.gestion }} </th>
+                                                    <th> {{ row.gestionBonos }} </th>
+                                                    <th> {{ row.caGestion }} </th>
+                                                    <th> {{ row.nuevoIdf }} </th>
+                                                    <th> {{ row.nuevoIdfSb }} </th>
+                                                    <th> {{ row.rango }} </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <ul class="pagination justify-content-end">
+                                            <pagination-controls (pageChange)="pagina=$event" maxSize="9"
+                                                directionLinks="true" autoHide="true" responsive="true"
+                                                previousLabel="Anterior" nextLabel="Siguiente"
+                                                screenReaderPaginationLabel="Paginación" screenReaderPageLabel="página"
+                                                screenReaderCurrentLabel="Estas en la página">
+                                            </pagination-controls>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--fin tabla Muestra los registros subidos -->
+                            </div>
+                        </div>
+                        <!--Fin Acordion base-idf-->
+
+                        <!--Acordion base-idf2-->
+                        <a class="card-header mb-3" id="heading11" tabindex="36">
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse3"
+                                aria-expanded="false" aria-controls="collapse1">
+                                <h5 class="mb-0 text-dark f-w-bold">BASE-IDF2</h5>
+                            </button>
+                        </a>
+                        <div id="collapse3" class="collapse" aria-labelledby="heading11" data-parent="#accordian-3">
+                            <div class="card-body">
+                                <h6 class="card-subtitle">Selecciona el documento de excel con los datos que deseas
+                                    subir.</h6>
+                                <div class="form-row mb-3">
+                                    <div class="input-group">
+                                        <input type="file" class="custom-file-input form-control"
+                                            (change)="fileChange($event,'baseidfdos')" #inputfileidfdos>
+                                        <button class="btn btn-outline-secondary" type="button"
+                                            (click)="limpiar('baseidfdos')" id="inputGroupFileAddon04">
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="alert alert-success text-center" *ngIf="cd3">
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <p>Cargando Información</p>
+                                </div>
+                                <div class="table-responsive-sm" *ngIf="arrayResIdfdos.length>0">
+                                    <table data-bs-toggle="table" data-height="250" data-mobile-responsive="true"
+                                        class="table table-striped table-bordered table-sm">
+                                        <caption>Información subida</caption>
+                                        <thead class="table-light">
+                                            <!-- start row -->
+                                            <tr>
+                                                <th>Lote</th>
+                                                <th class="text-center">Cantidad de Registros</th>
+                                                <th class="text-center">Acción</th>
+                                            </tr> <!-- end row -->
+                                        </thead>
+                                        <tbody>
+                                            <!-- start row -->
+                                            <tr id="tr-id-1" class="tr-class-1" *ngFor="let row of arrayResIdfdos">
+                                                <td id="td-id-1" class="td-class-1">{{ row.lote }}</td>
+                                                <td class="text-center">{{ row.cantRegistro }}</td>
+                                                <td class="text-center">
+                                                    <a (click)="mostrarBaseIdfdos(row)" class="text-info cursor"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Visualizar Información"><i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a (click)="eliminarBaseIdfdos(row)" class="text-danger cursor"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Eliminar datos"><i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr> <!-- end row -->
+                                        </tbody>
+                                    </table>
+                                    <!--tabla Muestra los registros subidos -->
+                                    <div class="form-row" *ngIf="baseIdFdos.length>0">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th> idBaseIdf2 </th>
+                                                        <th> idTablero </th>
+                                                        <th> lote </th>
+                                                        <th> tipo </th>
+                                                        <th> grupo </th>
+                                                        <th> dependenciaTransferencia </th>
+                                                        <th> relevanciaFbkFijo </th>
+                                                        <th> endeudamientoLargoPlazo </th>
+                                                        <th> ahorroCorriente </th>
+                                                        <th> balancePrimario </th>
+                                                        <th> resultados </th>
+                                                        <th> idf </th>
+                                                        <th> caHolgura </th>
+                                                        <th> caCapacidadEjecucionIngresos </th>
+                                                        <th> caCapacidadEjecucionInversion </th>
+                                                        <th> bonificacionEsfuerzoPropio </th>
+                                                        <th> caGestion </th>
+                                                        <th> activo </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let row of baseIdFdos
+                                                    | paginate:{
+                                                            itemsPerPage:cantidadRegistrosPorPagina
+                                                            ,currentPage:pagina
+                                                            ,totalItems:cantidadRegistros 
+                                                        }
+                                                    ">
+                                                        <td>{{ row.idBaseIdf2 }} </td>
+                                                        <td>{{ row.idTablero }} </td>
+                                                        <td>{{ row.lote }} </td>
+                                                        <td>{{ row.tipo }} </td>
+                                                        <td>{{ row.grupo }} </td>
+                                                        <td>{{ row.dependenciaTransferencia }} </td>
+                                                        <td>{{ row.relevanciaFbkFijo }} </td>
+                                                        <td>{{ row.endeudamientoLargoPlazo }} </td>
+                                                        <td>{{ row.ahorroCorriente }} </td>
+                                                        <td>{{ row.balancePrimario }} </td>
+                                                        <td>{{ row.resultados }} </td>
+                                                        <td>{{ row.idf }} </td>
+                                                        <td>{{ row.caHolgura }} </td>
+                                                        <td>{{ row.caCapacidadEjecucionIngresos }} </td>
+                                                        <td>{{ row.caCapacidadEjecucionInversion }} </td>
+                                                        <td>{{ row.bonificacionEsfuerzoPropio }} </td>
+                                                        <td>{{ row.caGestion }} </td>
+                                                        <td>{{ row.activo }} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <ul class="pagination justify-content-end">
+                                                <pagination-controls (pageChange)="pagina=$event" maxSize="9"
+                                                    directionLinks="true" autoHide="true" responsive="true"
+                                                    previousLabel="Anterior" nextLabel="Siguiente"
+                                                    screenReaderPaginationLabel="Paginación"
+                                                    screenReaderPageLabel="página"
+                                                    screenReaderCurrentLabel="Estas en la página">
+                                                </pagination-controls>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--fin tabla Muestra los registros subidos -->
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin Acordion base-idf2-->
+
+                        <!--Acordion base-idi-->
+                        <a class="card-header mb-3" id="heading11" tabindex="37">
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse4"
+                                aria-expanded="false" aria-controls="collapse1">
+                                <h5 class="mb-0 text-dark f-w-bold">BASE-IDI</h5>
+                            </button>
+                        </a>
+                        <div id="collapse4" class="collapse" aria-labelledby="heading11" data-parent="#accordian-3">
+                            <div class="card-body">
+                                <h6 class="card-subtitle">Selecciona el documento de excel con los datos que deseas
+                                    subir.</h6>
+                                <div class="form-row mb-3">
+                                    <div class="input-group">
+                                        <input type="file" class="custom-file-input form-control"
+                                            (change)="fileChange($event,'baseidi')" #inputfileidi>
+                                        <button class="btn btn-outline-secondary" type="button"
+                                            (click)="limpiar('baseidi')" id="inputGroupFileAddon04">
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="alert alert-success text-center" *ngIf="cd4">
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <p>Cargando Información</p>
+                                </div>
+
+                                <div class="table-responsive-sm" *ngIf="arrayResIdi.length>0">
+                                    <table data-bs-toggle="table" data-height="250" data-mobile-responsive="true"
+                                        class="table table-striped table-bordered table-sm">
+                                        <caption>Información subida</caption>
+                                        <thead class="table-light">
+                                            <!-- start row -->
+                                            <tr>
+                                                <th>Lote</th>
+                                                <th class="text-center">Cantidad de Registros</th>
+                                                <th class="text-center">Acción</th>
+                                            </tr> <!-- end row -->
+                                        </thead>
+                                        <tbody>
+                                            <!-- start row -->
+                                            <tr id="tr-id-1" class="tr-class-1" *ngFor="let row of arrayResIdi">
+                                                <td id="td-id-1" class="td-class-1">{{row.lote}}</td>
+                                                <td class="text-center">{{row.cantRegistro}}</td>
+                                                <td class="text-center">
+                                                    <a (click)="mostrarBaseIdi(row)" class="text-info cursor"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Visualizar Información"><i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a (click)="eliminarBaseIdi(row)" class="text-danger cursor"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Eliminar datos"><i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr> <!-- end row -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--tabla Muestra los registros subidos -->
+                                <div class="form-row" *ngIf="baseIdi.length>0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th> idBaseIdi </th>
+                                                    <th> idTablero </th>
+                                                    <th> lote </th>
+                                                    <th> codigoDane </th>
+                                                    <th> municipio </th>
+                                                    <th> d1TalentoHumano </th>
+                                                    <th> d2DireccionamientoEstrategicoPlaneacion </th>
+                                                    <th> d3GestionResultadosValores </th>
+                                                    <th> d4EvaluacionResultados </th>
+                                                    <th> d5InformacionComunicacion </th>
+                                                    <th> d6GestionConocimiento </th>
+                                                    <th> d7ControlInterno </th>
+                                                    <th> p1GestionEstrategicaTalentoHumano </th>
+                                                    <th> p2Integridad </th>
+                                                    <th> p3PlaneacionInstitucional </th>
+                                                    <th> p4GestionPresupuestalEficienciaGastoPublico </th>
+                                                    <th> p5FortalecimientoOrganizacionalSimplificacionProcesos </th>
+                                                    <th> p6GobiernoDigital </th>
+                                                    <th> p7SeguridadDigital </th>
+                                                    <th> p8DefensaJuridica </th>
+                                                    <th> p9TransparenciaAccesoInformacionLuchaContraCorrupcion </th>
+                                                    <th> p10ServicioCiudadano </th>
+                                                    <th> p11RacionalizacionTramites </th>
+                                                    <th> p12ParticipacionCiudadanaGestionPublica </th>
+                                                    <th> p13SegumientoEvaluacionDesempe </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let row of baseIdi
+                                                | paginate:{
+                                                        itemsPerPage:cantidadRegistrosPorPagina
+                                                        ,currentPage:pagina
+                                                        ,totalItems:cantidadRegistros 
+                                                    }
+                                                ">
+                                                    <td> {{row.idBaseIdi }} </td>
+                                                    <td> {{row.idTablero }} </td>
+                                                    <td> {{row.lote }} </td>
+                                                    <td> {{row.codigoDane }} </td>
+                                                    <td> {{row.municipio }} </td>
+                                                    <td> {{row.d1TalentoHumano }} </td>
+                                                    <td> {{row.d2DireccionamientoEstrategicoPlaneacion }} </td>
+                                                    <td> {{row.d3GestionResultadosValores }} </td>
+                                                    <td> {{row.d4EvaluacionResultados }} </td>
+                                                    <td> {{row.d5InformacionComunicacion }} </td>
+                                                    <td> {{row.d6GestionConocimiento }} </td>
+                                                    <td> {{row.d7ControlInterno }} </td>
+                                                    <td> {{row.p1GestionEstrategicaTalentoHumano }} </td>
+                                                    <td> {{row.p2Integridad }} </td>
+                                                    <td> {{row.p3PlaneacionInstitucional }} </td>
+                                                    <td> {{row.p4GestionPresupuestalEficienciaGastoPublico }} </td>
+                                                    <td> {{row.p5FortalecimientoOrganizacionalSimplificacionProcesos}}
+                                                    </td>
+                                                    <td> {{row.p6GobiernoDigital }} </td>
+                                                    <td> {{row.p7SeguridadDigital }} </td>
+                                                    <td> {{row.p8DefensaJuridica }} </td>
+                                                    <td> {{row.p9TransparenciaAccesoInformacionLuchaContraCorrupcion}}
+                                                    </td>
+                                                    <td> {{row.p10ServicioCiudadano }} </td>
+                                                    <td> {{row.p11RacionalizacionTramites }} </td>
+                                                    <td> {{row.p12ParticipacionCiudadanaGestionPublica }} </td>
+                                                    <td> {{row.p13SegumientoEvaluacionDesempe }} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <ul class="pagination justify-content-end">
+                                            <pagination-controls (pageChange)="pagina=$event" maxSize="9"
+                                                directionLinks="true" autoHide="true" responsive="true"
+                                                previousLabel="Anterior" nextLabel="Siguiente"
+                                                screenReaderPaginationLabel="Paginación" screenReaderPageLabel="página"
+                                                screenReaderCurrentLabel="Estas en la página">
+                                            </pagination-controls>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--fin tabla Muestra los registros subidos -->
+                            </div>
+                        </div>
+                        <!--Fin Acordion base-idi-->
+
+                        <!--Acordion ResumenMdm-->
+                        <a class="card-header mb-3" id="heading11" tabindex="38">
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse5"
+                                aria-expanded="false" aria-controls="collapse1">
+                                <h5 class="mb-0 text-dark f-w-bold">Resumen MDM</h5>
+                            </button>
+                        </a>
+                        <div id="collapse5" class="collapse" aria-labelledby="heading11" data-parent="#accordian-3">
+                            <div class="card-body">
+                                <h6 class="card-subtitle">Selecciona el documento de excel con los datos que deseas
+                                    subir.</h6>
+                                <div class="form-row mb-3">
+                                    <div class="input-group">
+                                        <input type="file" class="custom-file-input form-control"
+                                            (change)="fileChange($event,'resumenmdm')" #inputfileResumemdm>
+                                        <button class="btn btn-outline-secondary" type="button"
+                                            (click)="limpiar('resumenmdm')" id="inputGroupFileAddon04">
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="alert alert-success text-center" *ngIf="cd5">
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <p>Cargando Información</p>
+                                </div>
+
+                                <div class="table-responsive-sm" *ngIf="arrayResResumenMdm.length>0">
+                                    <table data-bs-toggle="table" data-height="250" data-mobile-responsive="true"
+                                        class="table table-striped table-bordered table-sm">
+                                        <caption>Información subida</caption>
+                                        <thead class="table-light">
+                                            <!-- start row -->
+                                            <tr>
+                                                <th>Lote</th>
+                                                <th class="text-center">Cantidad de Registros</th>
+                                                <th class="text-center">Acción</th>
+                                            </tr> <!-- end row -->
+                                        </thead>
+                                        <tbody>
+                                            <!-- start row -->
+                                            <tr id="tr-id-1" class="tr-class-1" *ngFor="let row of arrayResResumenMdm">
+                                                <td id="td-id-1" class="td-class-1">{{row.lote}}</td>
+                                                <td class="text-center">{{row.cantRegistro}}</td>
+                                                <td class="text-center">
+                                                    <a (click)="mostrarResumenMdm(row)" class="text-info cursor"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Visualizar Información"><i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a (click)="eliminarResumenMdm(row)" class="text-danger cursor"
+                                                        data-bs-toggle="tooltip" data-bs-placement="right"
+                                                        title="Eliminar datos"><i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr> <!-- end row -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--tabla Muestra los registros subidos -->
+                                <div class="form-row" *ngIf="resumenMdm.length>0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>grupo </th>
+                                                    <th>mdm </th>
+                                                    <th>gestion </th>
+                                                    <th>resultado </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let row of resumenMdm
+                                                | paginate:{
+                                                        itemsPerPage:cantidadRegistrosPorPagina
+                                                        ,currentPage:pagina
+                                                        ,totalItems:cantidadRegistros 
+                                                    }
+                                                ">
+                                                    <td>{{ row.grupo }}</td>
+                                                    <td>{{ row.mdm }}</td>
+                                                    <td>{{ row.gestion }}</td>
+                                                    <td>{{ row.resultado}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <ul class="pagination justify-content-end">
+                                            <pagination-controls (pageChange)="pagina=$event" maxSize="9"
+                                                directionLinks="true" autoHide="true" responsive="true"
+                                                previousLabel="Anterior" nextLabel="Siguiente"
+                                                screenReaderPaginationLabel="Paginación" screenReaderPageLabel="página"
+                                                screenReaderCurrentLabel="Estas en la página">
+                                            </pagination-controls>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--fin tabla Muestra los registros subidos -->
+                            </div>
+                        </div>
+                        <!--Fin Acordion ResumenMdm-->
+
+                        <!--Acordion PromedioDimensiones-->
+                        <a class="card-header mb-3" id="heading11" tabindex="39">
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse6"
+                                aria-expanded="false" aria-controls="collapse1">
+                                <h5 class="mb-0 text-dark f-w-bold">Promedio Dimensiones MPIG de acuerdo a grupo Par
+                                </h5>
+                            </button>
+                        </a>
+                        <div id="collapse6" class="collapse" aria-labelledby="heading11" data-parent="#accordian-3">
+                            <div class="card-body">
+                                <h6 class="card-subtitle">Selecciona el documento de excel con los datos que deseas
+                                    subir.</h6>
+                                <div class="form-row mb-3">
+                                    <div class="input-group">
+                                        <input type="file" class="custom-file-input form-control"
+                                            (change)="fileChange($event,'promedioDimension')"
+                                            #inputfilePromedioDimension>
+                                        <button class="btn btn-outline-secondary" type="button"
+                                            (click)="limpiar('promedioDimension')" id="inputGroupFileAddon04">
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="alert alert-success text-center" *ngIf="cd6">
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <p>Cargando Información</p>
+                                </div>
+
+                                <div class="table-responsive-sm" *ngIf="arrayResPromedioDimension.length>0">
+                                    <table data-bs-toggle="table" data-height="250" data-mobile-responsive="true"
+                                        class="table table-striped table-bordered table-sm">
+                                        <caption>Información subida</caption>
+                                        <thead class="table-light">
+                                            <!-- start row -->
+                                            <tr>
+                                                <th>Lote</th>
+                                                <th class="text-center">Cantidad de Registros</th>
+                                                <th class="text-center">Acción</th>
+                                            </tr> <!-- end row -->
+                                        </thead>
+                                        <tbody>
+                                            <!-- start row -->
+                                            <tr id="tr-id-1" class="tr-class-1"
+                                                *ngFor="let row of arrayResPromedioDimension">
+                                                <td id="td-id-1" class="td-class-1">{{row.lote}}</td>
+                                                <td class="text-center">{{row.cantRegistro}}</td>
+                                                <td class="text-center">
+                                                    <a (click)="mostrarPromedioDimensiones(row)"
+                                                        class="text-info cursor" data-bs-toggle="tooltip"
+                                                        data-bs-placement="right" title="Visualizar Información"><i
+                                                            class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a (click)="eliminarPromedioDimensiones(row)"
+                                                        class="text-danger cursor" data-bs-toggle="tooltip"
+                                                        data-bs-placement="right" title="Eliminar datos"><i
+                                                            class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr> <!-- end row -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--tabla Muestra los registros subidos -->
+                                <div class="form-row" *ngIf="promedioDimensiones.length>0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th> tipo </th>
+                                                    <th> d1TalentoHumano </th>
+                                                    <th> d2DireccionamientoEstrategicoPlaneacion </th>
+                                                    <th> d3GestionResultadosValores </th>
+                                                    <th> d4EvaluacionResultados </th>
+                                                    <th> d5InformacionComunicacion </th>
+                                                    <th> d6GestionConocimiento </th>
+                                                    <th> d7Control </th>
+                                                    <th> idi </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let row of promedioDimensiones
+                                                | paginate:{
+                                                        itemsPerPage:cantidadRegistrosPorPagina
+                                                        ,currentPage:pagina
+                                                        ,totalItems:cantidadRegistros 
+                                                    }
+                                                ">
+                                                    <td> {{ row.tipo }} </td>
+                                                    <td> {{ row.d1TalentoHumano }} </td>
+                                                    <td> {{ row.d2DireccionamientoEstrategicoPlaneacion}} </td>
+                                                    <td> {{ row.d3GestionResultadosValores }} </td>
+                                                    <td> {{ row.d4EvaluacionResultados }} </td>
+                                                    <td> {{ row.d5InformacionComunicacion }} </td>
+                                                    <td> {{ row.d6GestionConocimiento }} </td>
+                                                    <td> {{ row.d7Control }} </td>
+                                                    <td> {{ row.idi }} </td>
+                                                    <td> {{ row.activo }} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <ul class="pagination justify-content-end">
+                                            <pagination-controls (pageChange)="pagina=$event" maxSize="9"
+                                                directionLinks="true" autoHide="true" responsive="true"
+                                                previousLabel="Anterior" nextLabel="Siguiente"
+                                                screenReaderPaginationLabel="Paginación" screenReaderPageLabel="página"
+                                                screenReaderCurrentLabel="Estas en la página">
+                                            </pagination-controls>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--fin tabla Muestra los registros subidos -->
+                            </div>
+                        </div>
+                        <!--Fin Acordion PromedioDimensiones-->
+
+
+                    </div>
+                </div>
+                <div class="tab-pane  p-20" id="detalle" role="tabpanel">
+                    <h4 class="card-title">Lotes Subidos.</h4>
+                    <h6 class="card-subtitle mb-3">La información a continuación lista los lotes que se han procesado
+                    </h6>
+                    <div class="table-responsive">
+                        <table data-bs-toggle="table" data-height="250" data-mobile-responsive="true"
+                            class="table table-striped table-bordered">
+                            <thead>
+                                <!-- start row -->
+                                <tr>
+                                    <th>Lote</th>
+                                    <th>Nombre</th>
+                                    <th class="text-center">Ver</th>
+                                    <th class="text-center">Eliminar</th>
+                                </tr> <!-- end row -->
+                            </thead>
+                            <tbody>
+                                <!-- start row -->
+                                <tr class="tr-class-1" *ngFor="let row of arrayLotes">
+                                    <td>{{row.lote}}</td>
+                                    <td>{{row.nombre}}</td>
+                                    <td class="text-center">
+                                        <a (click)="seleccionarLote(row)" class="text-info cursor mr-2"
+                                            data-bs-toggle="tooltip" data-bs-placement="right"
+                                            title="Seleccionar lote"><i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a (click)="eliminarLote(row)" class="text-danger cursor"
+                                            data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar datos"><i
+                                                class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr> <!-- end row -->
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
